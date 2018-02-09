@@ -63,7 +63,7 @@ double Option::h(double x, double n) {
         sgnx = 1;
     else
         sgnx = -1;
-    double result = 0.5 + sgnx * sqrt(0.25 - 0.25 * exp(-(x / (n + 1 / 3)) *
-                            (x / (n + 1 / 3)) * (n + 1 / 6)));
+    double result = 0.5 + sgnx * sqrt(0.25 - 0.25 * exp(-(x / (n + 1 / 3.0)) *
+                            (x / (n + 1 / 3.0)) * (n + 1 / 6.0)));
     return result;
 }
