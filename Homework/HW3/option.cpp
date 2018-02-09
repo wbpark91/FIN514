@@ -26,8 +26,8 @@ double Option::bntprice(unsigned int steps, BinomialType bntType) {
             q = (exp((r_ - div_) * dt) - d) / (u - d);    /* Risk neutral probability */
             break;
         case LR:                                /* Leisen and Reimer */
-            q = h(getd1(), steps);
-            double q1 = h(getd2(), steps);
+            q = h(getd2(), steps);
+            double q1 = h(getd1(), steps);
             u = exp((r_ - div_) * dt) * q1 / q;
             d = (exp((r_ - div_) * dt) - q * u) / (1 - q);
             break;
