@@ -22,7 +22,7 @@ int main(int argc, char **argv) {
     MarketVariable mktVar(100, 0.02, 0.0, 0.35);
 
     /* Option setting */
-    PlainvanillaOption option1(95, 1, Put);
+    PlainVanillaOption option1(95, 1, Put);
     option1.setMarketVariable(mktVar);
     double bsp = option1.bsprice();
 

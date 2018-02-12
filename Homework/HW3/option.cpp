@@ -20,9 +20,9 @@ std::vector<double> Option::makeTree(unsigned int steps, BinomialType bntType) {
     dt_ = t_ / steps;
 
     switch (bntType) {
-        case CRR:                                /* CRR Tree */
-            u_ = exp(sigma_ * sqrt(dt_));          /* Upward node */
-            d_ = 1 / u_;                           /* Downward node */
+        case CRR:                               /* CRR Tree */
+            u_ = exp(sigma_ * sqrt(dt_));                      /* Upward node */
+            d_ = 1 / u_;                                       /* Downward node */
             q_ = (exp((r_ - div_) * dt_) - d_) / (u_ - d_);    /* Risk neutral probability */
             break;
         case RB:                                /* Rendleman and Bartter */
