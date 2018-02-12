@@ -10,8 +10,5 @@ public:
     virtual double bsprice() = 0;
     virtual double bntprice(unsigned int steps, BinomialType bntType);
 protected:
-    double getd1();
-    double getd2();
-    double h(double x, double n);
 };
 #endif

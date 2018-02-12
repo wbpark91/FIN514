@@ -17,11 +17,12 @@ public:
 protected:
     double s_, strike_, r_, div_, t_, sigma_;
     MarketVariable mktVar_;
+    Payoff *payoff_;
+    OptionType type_;
+
     double getd1();
     double getd2();
     double h(double x, double n);
-    Payoff *payoff_;
-    OptionType type_;
 };
 
 #endif
