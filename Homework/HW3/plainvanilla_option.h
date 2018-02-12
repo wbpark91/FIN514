@@ -1,6 +1,6 @@
 #ifndef _PLAINVANILLA_OPTION_H_
 #define _PLAINVANILLA_OPTION_H_
-#include "option.h"
+#include "european_option.h"
 #include "payoff.h"
 #define MAX(x, y)   (((x) > (y)) ? (x) : (y))
 
@@ -13,10 +13,10 @@ private:
     OptionType type_;
 };
 
-class PlainvanillaOption: public Option {
+class PlainvanillaOption: public EuropeanOption {
 public:
-    PlainvanillaOption(double s, double strike, double r, double div, double t, double sigma,
-                        OptionType type);
+    PlainvanillaOption() {}
+    PlainvanillaOption(double strike, double maturity, OptionType type);
     virtual ~PlainvanillaOption() {};
     virtual double bsprice();
 private:

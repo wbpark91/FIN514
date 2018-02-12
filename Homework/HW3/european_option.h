@@ -1,10 +1,17 @@
 #ifndef _EUROPEAN_OPTION_H_
 #define _EUROPEAN_OPTION_H_
 #include "option.h"
-class EuropeanOption {
-public:
 
-private:
-    double s_, strike_, r_, div_, t_, sigma_;
+class EuropeanOption: public Option {
+public:
+    EuropeanOption() {}
+    EuropeanOption(double strike, double maturity, OptionType type);
+    ~EuropeanOption() {}
+    virtual double bsprice() = 0;
+    virtual double bntprice(unsigned int steps, BinomialType bntType);
+protected:
+    double getd1();
+    double getd2();
+    double h(double x, double n);
 };
 #endif

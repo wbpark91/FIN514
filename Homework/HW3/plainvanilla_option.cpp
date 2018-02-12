@@ -9,8 +9,8 @@ double PlainvanillaPayoff::operator()(double s) {
     return MAX(type_ * (s - strike_), 0.0);
 }
 
-PlainvanillaOption::PlainvanillaOption(double s, double strike, double r, double q, double t, double sigma,
-                    OptionType type): Option(s, strike, r, q, t, sigma, type) {
+PlainvanillaOption::PlainvanillaOption(double strike, double maturity, OptionType type)
+        : EuropeanOption(strike, maturity, type) {
     payoff_ = new PlainvanillaPayoff(strike, type);
 }
 

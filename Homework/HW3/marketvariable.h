@@ -3,6 +3,7 @@
 
 class MarketVariable {
 public:
+    MarketVariable() {}
     MarketVariable(double spot, double r, double dividend, double sigma)
         :spot_(spot), r_(r), div_(dividend), sigma_(sigma) {}
     ~MarketVariable() {}
@@ -13,4 +14,5 @@ public:
 private:
     double spot_, r_, div_, sigma_;
 };
+
 #endif
