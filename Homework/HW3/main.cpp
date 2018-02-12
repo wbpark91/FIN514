@@ -2,6 +2,7 @@
 #include <fstream>
 #include <iomanip>
 #include "plainvanilla_option.h"
+#include "american_option.h"
 #include "marketvariable.h"
 
 int main(int argc, char **argv) {
@@ -48,5 +49,6 @@ int main(int argc, char **argv) {
     /* Close output stream */
     crrrbout.close();
     lrout.close();
+
     return 0;
 }
