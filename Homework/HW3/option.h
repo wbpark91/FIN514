@@ -13,7 +13,6 @@ public:
     Option(double strike, double maturity, OptionType type);
     void setMarketVariable(MarketVariable mktVar);
     virtual ~Option();
-    virtual double bsprice() = 0;
     virtual double bntprice(unsigned int steps, BinomialType bntType) = 0;
 protected:
     /* Market Variables */
