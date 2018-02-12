@@ -1,20 +1,14 @@
 #include <cmath>
 #include "plainvanilla_option.h"
+#include "plainvanilla_payoff.h"
 #include "normal.h"
 
-PlainvanillaPayoff::PlainvanillaPayoff(double strike, OptionType type)
-    :strike_(strike), type_(type) {}
-
-double PlainvanillaPayoff::operator()(double s) {
-    return MAX(type_ * (s - strike_), 0.0);
-}
-
-PlainvanillaOption::PlainvanillaOption(double strike, double maturity, OptionType type)
+PlainVanillaOption::PlainVanillaOption(double strike, double maturity, OptionType type)
         : EuropeanOption(strike, maturity, type) {
-    payoff_ = new PlainvanillaPayoff(strike, type);
+    payoff_ = new PlainVanillaPayoff(strike, type);
 }
 
-double PlainvanillaOption::bsprice() {
+double PlainVanillaOption::bsprice() {
     double d1 = getd1();
     double d2 = getd2();
     double nd1 = normcdf(type_ * d1);
