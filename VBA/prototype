@@ -1,0 +1,10 @@
+Dim i, j, AS INTEGER
+Dim k AS DOUBLE #Real number: double
+Dim VOption(0 TO 1000, 0 TO 1000) AS DOUBLE
+VOption(-1, 1001) = 10		#ERROR!!
+
+#For loop(step: optional)
+For N = 50 to 1000(step 1)
+Next N
+For N = 51 to 999(step 2 or -1 or ...)
+Next N
