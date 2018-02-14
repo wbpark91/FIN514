@@ -14,13 +14,13 @@ public:
     void setMarketVariable(MarketVariable mktVar);
     virtual ~Option();
     virtual double bntprice(unsigned int steps, BinomialType bntType) = 0;
+
+    /* Set function */
+    void setSpot(double s);
 protected:
     /* Market Variables */
     double s_, strike_, r_, div_, t_, sigma_;
     MarketVariable mktVar_;
-
-    /* Set function */
-    void setSpot(double s) const;
 
     /* Option Characteristic */
     Payoff *payoff_;

@@ -52,7 +52,7 @@ std::vector<double> Option::makeTree(unsigned int steps, BinomialType bntType) {
 }
 
 double Option::getd1() {
-    return (log(s_ / strike_) + (r_ - div_ + 0.5 * sigma_ * sigma_)) / (sigma_ * sqrt(t_));
+    return (log(s_ / strike_) + (r_ - div_ + 0.5 * sigma_ * sigma_) * t_) / (sigma_ * sqrt(t_));
 }
 
 double Option::getd2() {
@@ -71,6 +71,6 @@ double Option::h(double x, double n) {
     return result;
 }
 
-void Option::setSpot(double s) const {
+void Option::setSpot(double s) {
     s_ = s;
 }
