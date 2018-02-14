@@ -19,6 +19,9 @@ protected:
     double s_, strike_, r_, div_, t_, sigma_;
     MarketVariable mktVar_;
 
+    /* Set function */
+    void setSpot(double s) const;
+
     /* Option Characteristic */
     Payoff *payoff_;
     OptionType type_;

@@ -70,3 +70,7 @@ double Option::h(double x, double n) {
                             (x / (n + 1 / 3.0)) * (n + 1 / 6.0)));
     return result;
 }
+
+void Option::setSpot(double s) const {
+    s_ = s;
+}
