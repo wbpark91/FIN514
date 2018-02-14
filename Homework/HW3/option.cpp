@@ -1,5 +1,6 @@
 #include "option.h"
 #include <cmath>
+#include <iostream>
 
 Option::Option(double strike, double maturity, OptionType type)
     :strike_(strike), t_(maturity), type_(type) { }
@@ -18,7 +19,7 @@ void Option::setMarketVariable(MarketVariable mktVar) {
 
 std::vector<double> Option::makeTree(unsigned int steps, BinomialType bntType) {
     dt_ = t_ / steps;
-
+    double q1;
     switch (bntType) {
         case CRR:                               /* CRR Tree */
             u_ = exp(sigma_ * sqrt(dt_));                      /* Upward node */
@@ -32,10 +33,13 @@ std::vector<double> Option::makeTree(unsigned int steps, BinomialType bntType) {
             break;
         case LR:                                /* Leisen and Reimer */
             q_ = h(getd2(), steps);
-            double q1 = h(getd1(), steps);
+            q1 = h(getd1(), steps);
             u_ = exp((r_ - div_) * dt_) * q1 / q_;
             d_ = (exp((r_ - div_) * dt_) - q_ * u_) / (1 - q_);
             break;
+        default:
+            std::cout << "European Option can have 3 methods: CRR, RB, LR" << std::endl;
+            exit(1);
     }
     std::vector<double> tree(steps + 1);
 

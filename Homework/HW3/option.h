@@ -5,7 +5,7 @@
 #include <vector>
 
 enum OptionType { Call = 1, Put = -1 };
-enum BinomialType { CRR, RB, LR };
+enum BinomialType { CRR, RB, LR, BD };
 
 class Option {
 public:
