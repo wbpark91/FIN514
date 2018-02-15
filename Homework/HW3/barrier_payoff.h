@@ -7,8 +7,8 @@ class BarrierPayoff: public Payoff {
 public:
     BarrierPayoff(double strike, double barrier, OptionType type, BarrierFeature barrierFeature);
     ~BarrierPayoff() {}
-    virtual operator()(double spot);
-    
+    virtual double operator()(double spot);
+
 private:
     double strike_;
     double barrier_;
