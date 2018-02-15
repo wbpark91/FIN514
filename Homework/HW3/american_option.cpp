@@ -38,9 +38,9 @@ double AmericanOption::bntprice(unsigned int steps, BinomialType bntType) {
     /* Backward induction */
     double prevSpot;                /* Spot price at previous period */
     double exValue, contValue;      /* Exercise Value and Continuation Value */
+    exerTree_.clear();              /* Initialize exercise tree */
+    
     for (int i = tree.size() - 1; i > 0; --i) {
-        /* Initialize exercise tree */
-        exerTree_.clear();
         std::vector<ExerDummy> exer;
 
         for (int j = 0; j < i; ++j) {
