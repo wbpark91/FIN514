@@ -6,6 +6,7 @@
 
 enum OptionType { Call = 1, Put = -1 };
 enum BinomialType { CRR, RB, LR, BD };
+enum BarrierFeature { In, Out };
 
 class Option {
 public:
