@@ -39,7 +39,7 @@ double AmericanOption::bntprice(unsigned int steps, BinomialType bntType) {
     double prevSpot;                /* Spot price at previous period */
     double exValue, contValue;      /* Exercise Value and Continuation Value */
     exerTree_.clear();              /* Initialize exercise tree */
-    
+
     for (int i = tree.size() - 1; i > 0; --i) {
         std::vector<ExerDummy> exer;
 
