@@ -33,8 +33,10 @@ double BarrierOption::bntprice(unsigned int steps, BinomialType bntType) {
 
     for (int i = tree.size() - 1; i > 0; --i) {
         for (int j = 0; j < i; ++j) {
+            /* Spot price at each node */
             prevSpot = s_ * pow(u_, i - j - 1) * pow(d_, j);
-            switch(barrierFeature_) {
+
+            switch(barrierFeature_) {       /* For each barrier features */
                 case DO:
                     if (prevSpot <= barrier_) {
                         tree[j] = 0.0;
