@@ -39,12 +39,48 @@ double AmericanOption::bntprice(unsigned int steps, BinomialType bntType) {
     double prevSpot;                /* Spot price at previous period */
     double exValue, contValue;      /* Exercise Value and Continuation Value */
     for (int i = tree.size() - 1; i > 0; --i) {
+        /* Initialize exercise tree */
+        exerTree_.clear();
+        std::vector<ExerDummy> exer;
+
         for (int j = 0; j < i; ++j) {
             prevSpot = s_ * pow(u_, i - j - 1) * pow(d_, j);
             exValue = (*payoff_)(prevSpot);
             contValue = exp(-r_ * dt_) * (q_ * tree[j] + (1 - q_) * tree[j + 1]);
+
+            /* Write exercise tree at time i */
+            if (exValue > contValue)
+                exer.push_back(Exercise);
+            else
+                exer.push_back(Continue);
             tree[j] = MAX(exValue, contValue);
         }
+
+        /* Write exercise tree */
+        exerTree_.push_back(exer);
     }
     return tree[0];
+}
+
+
+std::vector<double> AmericanOption::exerciseBound(unsigned int steps, BinomialType bntType) {
+    bntprice(steps, bntType);
+
+    std::vector<double> bound;
+    for (int i = 0; i < exerTree_.size(); ++i) {
+        for (int j = 0; j < exerTree_[i].size() - 1; ++j) {
+            /* If no early exercise */
+            if (exerTree_[i][exerTree_[i].size() - 1] == 0) {
+                bound.push_back(0);
+                break;
+            }
+
+            /* If early exercise */
+            if (exerTree_[i][j] == 0 && exerTree_[i][j+1] == 1) {
+                bound.push_back(s_ * pow(u_, exerTree_[i].size() - (j + 1)) * pow(d_, j + 1));
+                break;
+            }
+        }
+    }
+    return bound;
 }
