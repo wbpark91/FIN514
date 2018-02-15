@@ -6,7 +6,9 @@
 
 enum OptionType { Call = 1, Put = -1 };
 enum BinomialType { CRR, RB, LR, BD };
-enum BarrierFeature { In, Out };
+
+/* Barrier feature : In, Out */
+enum BarrierFeature { UI, UO, DI, DO };
 
 class Option {
 public:
@@ -31,8 +33,8 @@ protected:
     double u_, d_, q_, dt_;
 
     /* Internal functions */
-    virtual double getd1();
-    virtual double getd2();
+    double getd1();
+    double getd2();
     double h(double x, double n);
     std::vector<double> makeTree(unsigned int steps, BinomialType bntType);
 };
