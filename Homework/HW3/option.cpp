@@ -51,11 +51,11 @@ std::vector<double> Option::makeTree(unsigned int steps, BinomialType bntType) {
     return tree;
 }
 
-double Option::getd1() {
+virtual double Option::getd1() {
     return (log(s_ / strike_) + (r_ - div_ + 0.5 * sigma_ * sigma_) * t_) / (sigma_ * sqrt(t_));
 }
 
-double Option::getd2() {
+virtual double Option::getd2() {
     return getd1() - sigma_ * sqrt(t_);
 }
 

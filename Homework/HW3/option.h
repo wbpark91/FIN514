@@ -30,8 +30,8 @@ protected:
     double u_, d_, q_, dt_;
 
     /* Internal functions */
-    double getd1();
-    double getd2();
+    virtual double getd1();
+    virtual double getd2();
     double h(double x, double n);
     std::vector<double> makeTree(unsigned int steps, BinomialType bntType);
 };
