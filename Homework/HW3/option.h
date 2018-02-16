@@ -18,6 +18,9 @@ public:
     virtual ~Option();
     virtual double bntprice(unsigned int steps, BinomialType bntType) = 0;
 
+    /* Get the closest value below and above of input value from the tree */
+    double getLambda(double value, unsigned int steps, unsigned int node, BinomialType bntType);
+
     /* Set function */
     void setSpot(double s);
 protected:

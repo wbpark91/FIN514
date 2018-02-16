@@ -1,4 +1,5 @@
 #include "option.h"
+#include "u_math.h"
 #include <cmath>
 #include <iostream>
 
@@ -49,6 +50,49 @@ std::vector<double> Option::makeTree(unsigned int steps, BinomialType bntType) {
     }
 
     return tree;
+}
+
+double Option::getLambda(double value, unsigned int steps, unsigned int node, BinomialType bntType) {
+    double dt = t_ / steps;
+    double u, d, q, q1;
+    double lambda;
+    std::vector<double> tree(node + 1);
+    std::vector<double> cValue;     /* Closest value vector */
+
+    /* Choose u, d, q corresponding method of binomial tree */
+    switch (bntType) {
+        case CRR:                               /* CRR Tree */
+            u = exp(sigma_ * sqrt(dt));                      /* Upward node */
+            d = 1 / u;                                       /* Downward node */
+            q = (exp((r_ - div_) * dt) - d) / (u - d);    /* Risk neutral probability */
+            break;
+        case RB:                                /* Rendleman and Bartter */
+            u = exp((r_ - div_ - 0.5 * sigma_ * sigma_) * dt + sigma_ * sqrt(dt));
+            d = u / exp(2 * sigma_ * sqrt(dt));
+            q = (exp((r_ - div_) * dt) - d) / (u - d);    /* Risk neutral probability */
+            break;
+        case LR:                                /* Leisen and Reimer */
+            q = h(getd2(), steps);
+            q1 = h(getd1(), steps);
+            u = exp((r_ - div_) * dt) * q1 / q;
+            d = (exp((r_ - div_) * dt) - q * u) / (1 - q);
+            break;
+        default:
+            std::cout << "European Option can have 3 methods: CRR, RB, LR" << std::endl;
+            exit(1);
+    }
+
+    /* Spot tree construct */
+    for (int i = 0; i < tree.size(); ++i) {
+        tree[i] = s_ * pow(u, steps - i) * pow(d, i);
+    }
+
+    /* Find below and above value */
+    cValue = findBAValue(tree, value);
+
+    /* Calculation of lambda */
+    lambda = (cValue[1] - value) / (cValue[1] - cValue[0]);
+    return lambda;
 }
 
 double Option::getd1() {
