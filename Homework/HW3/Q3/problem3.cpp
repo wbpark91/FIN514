@@ -5,6 +5,12 @@
 #include "marketvariable.h"
 
 int main(int argc, char **argv) {
+    if (argc != 2) {
+        std::cout << "Input error!" << std::endl;
+        std::cout << "Usage: " << argv[0] << "  filename.csv" << std::endl;
+        exit(1);
+    }
+    
     std::ofstream barrierOut;
 
     ContinuousBarrierOption option(100, 95, 0.5, Call, DO);

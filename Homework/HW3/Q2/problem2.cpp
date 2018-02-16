@@ -6,6 +6,12 @@
 #include "u_math.h"
 
 int main(int argc, char **argv) {
+    if (argc != 6) {
+        std::cout << "Input error!" << std::endl;
+        std::cout << "Usage: " << argv[0] << "   CRRRBoutput.csv  LRoutput.csv  exercisebound.csv  CRRRBextrapolation.csv  LRextrapolation.csv" << std::endl;
+        exit(1);
+    }
+
     /* Output stream */
     std::ofstream crrrbout, lrout, exerout;
 
