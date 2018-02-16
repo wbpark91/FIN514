@@ -56,10 +56,10 @@ int main(int argc, char **argv) {
     crrBdExtra.open(argv[4], std::ios::app);
     lrExtra.open(argv[5],std::ios::app);
     crrBdExtra << "N, M, CRR, BD" << std::endl;
-    lrExtra << "N, M, LR" << std::endl;
+    lrExtra << "N, M, LR1, LR2" << std::endl;
     int stepSize1 = 25;                             /* Step size for CRR and RB */
     int stepSize2 = 50;                             /* Step size for LR */
-    for (int i = 1; i <= 25; ++i) {
+    for (int i = 1; i <= 20; ++i) {
         double crrValue1 = option.bntprice(i * stepSize1, CRR);
         double crrValue2 = option.bntprice(2 * i * stepSize1, CRR);
         double bdValue1 = option.bntprice(i * stepSize1, BD);
@@ -71,9 +71,10 @@ int main(int argc, char **argv) {
 
     for (int i = 1; i <= 10; ++i) {
         double lrValue1 = option.bntprice(i * stepSize2 + 1, LR);
-        double lrValue2 = option.bntprice(2 * i * stepSize2 + 1, LR);
-        double lrExtraValue = extrapolate(i * stepSize2 + 1, lrValue1, 2 * i * stepSize2 + 1, lrValue2, 2);
-        lrExtra << i * stepSize2 + 1 << "," << 2 * i * stepSize2 + 1 << "," << (lrExtraValue - value) << std::endl;
+        double lrValue2 = option.bntprice(2 * i * stepSize2 - 1, LR);
+        double lrExtraValue1 = extrapolate(i * stepSize2 + 1, lrValue1, 2 * i * stepSize2 - 1, lrValue2, 1);
+        double lrExtraValue2 = extrapolate(i * stepSize2 + 1, lrValue1, 2 * i * stepSize2 - 1, lrValue2, 2);
+        lrExtra << i * stepSize2 + 1 << "," << 2 * i * stepSize2 - 1 << "," << (lrExtraValue1 - value) << "," << (lrExtraValue2 - value) << std::endl;
     }
 
     std::cout << "Extrpolation completed successfully." << std::endl;
