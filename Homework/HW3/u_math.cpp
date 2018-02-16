@@ -3,7 +3,7 @@
 #include <cmath>
 
 double extrapolate(double x1, double y1, double x2, double y2, int order) {
-    return (y2 * pow(x2, order) - y1 * pow(x1, order)) / (poew(x2, order) - pow(x1, order));
+    return (y2 * pow(x2, order) - y1 * pow(x1, order)) / (pow(x2, order) - pow(x1, order));
 }
 
 std::vector<double> findBAValue(std::vector<double> vec, double value) {
