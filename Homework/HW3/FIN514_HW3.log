@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.8.4)  16 FEB 2018 17:10
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.8.4)  16 FEB 2018 17:48
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -285,31 +285,38 @@ ne 208.
 Package pdftex.def Info: Requested size: 329.2292pt x 310.65987pt on input line
  208.
  [3 <./Q1/errorextra.png>] [4 <./Q2/error.png>]
-
+<Q3/error.png, id=33, 651.43375pt x 621.32124pt>
+File: Q3/error.png Graphic file (type png)
+<use Q3/error.png>
+Package pdftex.def Info: Q3/error.png  used on input line 223. on input line 22
+3.
+Package pdftex.def Info: Requested size: 325.71606pt x 310.65987pt on input lin
+e 223.
+ [5 <./Q2/boundary.png>] [6 <./Q2/errorextra.png>] 
 AED: lastpage setting LastPage
-[5 <./Q2/boundary.png>] [6 <./Q2/errorextra.png>] (./FIN514_HW3.aux) ) 
+[7 <./Q3/error.png>] (./FIN514_HW3.aux) ) 
 Here is how much of TeX's memory you used:
- 2568 strings out of 492990
- 34813 string characters out of 6132637
- 198068 words of memory out of 5000000
- 6088 multiletter control sequences out of 15000+600000
+ 2574 strings out of 492990
+ 34904 string characters out of 6132637
+ 198076 words of memory out of 5000000
+ 6093 multiletter control sequences out of 15000+600000
  10365 words of font info for 37 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  41i,11n,43p,1129b,250s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/loc
-al/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/loca
-l/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local
-/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/t
-exlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/tex
-live/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texliv
-e/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2
-017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/20
-17/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2017
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on FIN514_HW3.pdf (6 pages, 243411 bytes).
+</usr/local/texlive/2017/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2017/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2017/texmf-dist/font
+s/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2017/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2017/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmti10.pfb>
+Output written on FIN514_HW3.pdf (7 pages, 302503 bytes).
 PDF statistics:
- 70 PDF objects out of 1000 (max. 8388607)
- 42 compressed objects within 1 object stream
+ 77 PDF objects out of 1000 (max. 8388607)
+ 46 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 26 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 31 words of extra memory for PDF output out of 10000 (max. 10000000)
 

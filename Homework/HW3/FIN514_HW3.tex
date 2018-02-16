@@ -216,7 +216,25 @@
 %	PROBLEM 3
 %----------------------------------------------------------------------------------------
 \begin{homeworkProblem}
-	Using the analytic formula given in problem set, 
+	Using the analytic formula given in problem set, the analytic price of option is calculated as 5.61756. It will be used for the following procedures. In order to analyze the performance of CRR model, we calculated option prices from $N = 50$ to $N = 1000$ and plotted error. Figure \ref{fig:prob3-error} shows error of CRR method for pricing down-and-out call option.
+	%% Error of Barrier Option
+	\begin{figure}[ht]
+		\centering
+		\includegraphics[scale = 0.5]{Q3/error.png}
+		\caption{Error of CRR method}
+		\label{fig:prob3-error}
+	\end{figure}
+	In Figure \ref{fig:prob3-error}, errors is much larger than errors of European or American options. Therefore, it needs to be careful when pricing barrier options using CRR model. Moreover, the shape of error is periodic and there is a point where the error increases sharply from zero. After the error increases rapidly from zero, it decreases again to zero. To analyze this feature, we used a measure $\Lambda$, which represents relative position of barrier of nodes. It is calculated as followings.
+	\begin{equation*}
+	\begin{aligned}
+		&\Lambda = \frac{S_k - B}{S_k - S_{k-1}}	\\
+		&S_k:~\text{the closest node above the barrier}	\\
+		&S_{k-1}:~\text{the node below the barrier}	\\
+		&B:~\text{barrier}
+	\end{aligned}
+	\end{equation*}
+	If $B = S_k$, then $\Lambda$ will be equal to zero, and if $B = S_{k - 1}$, then $\Lambda$ will be equal to one. That means $\Lambda$ has a value between zero and one, and if barrier is exactly equal to some value of node, $\Lambda$ will be equal to zero or one. In this figure, we used $\Lambda$ with node at maturity. From the figure, we can observe that error is approximately equal to zero when $\Lambda$ is equal to zero or one. It means that the value of barrier option is calculated accurately if barrier of option is exactly at some value of node. Otherwise, the error would be enormously large even if the barrier is very slightly different to the value of node. %% c.
+	Since we know the behavior of error corresponding to $\Lambda$, it is possible to use this property to improve convergence of model. It is observed that error which have equal corresponding $\Lambda$ has monotonically decreasing features as number of steps increases. Therefore, if we choose several steps which makes equal $\Lambda$, and get set of option values, then use extrapolation technique for pricing options, the accuracy would be increased since the errors of the set is monotonically decreasing.
 \end{homeworkProblem}
 
 \end{document}
