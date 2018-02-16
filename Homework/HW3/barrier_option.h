@@ -12,9 +12,10 @@ public:
 
     virtual double bsprice();
     virtual double bntprice(unsigned int steps, BinomialType bntType);
+
+    double getBarrier() const;
 private:
     BarrierFeature barrierFeature_;
-    std::vector<double> lambda;     /* position of node relative to barrier */
     double barrier_;
     double geth1() const;
     double geth2() const;

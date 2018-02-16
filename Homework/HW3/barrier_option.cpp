@@ -79,6 +79,10 @@ double BarrierOption::bntprice(unsigned int steps, BinomialType bntType) {
     return tree[0];
 }
 
+double BarrierOption::getBarrier() const {
+    return barrier_;
+}
+
 double BarrierOption::geth1() const {
     return (log(barrier_ * barrier_ / (strike_ * s_)) + (r_ - div_ + 0.5 * sigma_ * sigma_) * t_) / (sigma_ * sqrt(t_));
 }
