@@ -72,7 +72,7 @@ int main(int argc, char **argv) {
     for (int i = 1; i <= 10; ++i) {
         double lrValue1 = option.bntprice(i * stepSize2 + 1, LR);
         double lrValue2 = option.bntprice(2 * i * stepSize2 + 1, LR);
-        double lrExtraValue = extrapolate(i * stepSize2 + 1, lrValue1, 2 * i * stepSize2 + 1, lrValue2);
+        double lrExtraValue = extrapolate(i * stepSize2 + 1, lrValue1, 2 * i * stepSize2 + 1, lrValue2, 2);
         lrExtra << i * stepSize2 + 1 << "," << 2 * i * stepSize2 + 1 << "," << (lrExtraValue - value) << std::endl;
     }
 
