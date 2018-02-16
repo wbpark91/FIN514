@@ -27,6 +27,7 @@ int main(int argc, char **argv) {
     PlainVanillaOption option1(95, 1, Put);
     option1.setMarketVariable(mktVar);
     double bsp = option1.bsprice();
+    std::cout << "Black-Scholes price: " << bsp << std::endl;
 
     /* Step of tree setting */
     minStep = 50;
@@ -60,7 +61,7 @@ int main(int argc, char **argv) {
     lrExtra << "N, M, LR" << std::endl;
     int stepSize1 = 25;                             /* Step size for CRR and RB */
     int stepSize2 = 50;                             /* Step size for LR */
-    for (int i = 1; i <= 25; ++i) {
+    for (int i = 1; i <= 20; ++i) {
         double crrValue1 = option1.bntprice(i * stepSize1, CRR);
         double crrValue2 = option1.bntprice(2 * i * stepSize1, CRR);
         double rbValue1 = option1.bntprice(i * stepSize1, RB);
@@ -72,9 +73,9 @@ int main(int argc, char **argv) {
 
     for (int i = 1; i <= 10; ++i) {
         double lrValue1 = option1.bntprice(i * stepSize2 + 1, LR);
-        double lrValue2 = option1.bntprice(2 * i * stepSize2 + 1, LR);
-        double lrExtraValue = extrapolate(i * stepSize2 + 1, lrValue1, 2 * i * stepSize2 + 1, lrValue2, 2);
-        lrExtra << i * stepSize2 + 1 << "," << 2 * i * stepSize2 + 1 << "," << (lrExtraValue - bsp) << std::endl;
+        double lrValue2 = option1.bntprice(2 * i * stepSize2 - 1, LR);
+        double lrExtraValue = extrapolate(i * stepSize2 + 1, lrValue1, 2 * i * stepSize2 - 1, lrValue2, 2);
+        lrExtra << i * stepSize2 + 1 << "," << 2 * i * stepSize2 - 1 << "," << (lrExtraValue - bsp) << std::endl;
     }
 
     std::cout << "Extrpolation completed successfully." << std::endl;
