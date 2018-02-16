@@ -6,11 +6,13 @@ double extrapolate(double x1, double y1, double x2, double y2) {
 }
 
 std::vector<double> findBAValue(std::vector<double> vec, double value) {
+    /* Input vector vec should be reverse - sorted */
+
     std::vector<double> result;
     for (int i = 0; i < vec.size() - 1; ++i) {
-        if (value >= vec[i] && value < vec[i+1]) {
-            result.push_back(vec[i]);
+        if (value < vec[i] && value >= vec[i+1]) {
             result.push_back(vec[i+1]);
+            result.push_back(vec[i]);
             return result;
         }
     }
