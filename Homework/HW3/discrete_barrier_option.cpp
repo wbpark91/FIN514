@@ -1,4 +1,5 @@
 #include "discrete_barrier_option.h"
+#include "plainvanilla_payoff.h"
 #include <vector>
 #include <cmath>
 
@@ -7,6 +8,8 @@ DiscreteBarrierOption::DiscreteBarrierOption(double strike, double barrier,
                     BarrierFeature barrierFeature)
                     :BarrierOption(strike, barrier, maturity, type, barrierFeature),
                      barrierDate_(date) {
+                         /* set a payoff as plain vanilla option */
+                         payoff_ = new PlainVanillaPayoff(strike, type);
                         /* sort barrierdate to descending order to use for binomial tree */
                         std::sort(barrierDate_.rbegin(), barrierDate_.rend());
                     }
