@@ -10,16 +10,15 @@ public:
                     BarrierFeature barrierFeature);
     ~BarrierOption() {}
 
-    virtual double bsprice();
-    virtual double bntprice(unsigned int steps, BinomialType bntType);
+    virtual double bsprice() = 0;
+    virtual double bntprice(unsigned int steps, BinomialType bntType) = 0;
 
     double getBarrier() const;
-private:
+protected:
     BarrierFeature barrierFeature_;
     double barrier_;
     double geth1() const;
     double geth2() const;
 };
-
 
 #endif
