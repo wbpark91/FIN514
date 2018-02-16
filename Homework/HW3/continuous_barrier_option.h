@@ -8,7 +8,7 @@ public:
     ContinuousBarrierOption(double strike, double barrier, double maturity, OptionType type,
                     BarrierFeature barrierFeature);
     ~ContinuousBarrierOption() {}
-    
+
     virtual double bntprice(unsigned int steps, BinomialType bntType);
     virtual double bsprice();
 private:
