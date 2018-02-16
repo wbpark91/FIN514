@@ -9,7 +9,7 @@
 int main(int argc, char **argv) {
     if (argc != 5) {
         std::cout << "Input error!" << std::endl;
-        std::cout << "Usage: ./filename   CRRRBoutput.csv  LRoutput.csv  CRRRBextrapolation.csv  LRextrapolation.csv" << std::endl;
+        std::cout << "Usage: " << argv[0] << "   CRRRBoutput.csv  LRoutput.csv  CRRRBextrapolation.csv  LRextrapolation.csv" << std::endl;
         exit(1);
     }
 
