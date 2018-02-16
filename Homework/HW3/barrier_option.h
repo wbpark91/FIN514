@@ -10,7 +10,6 @@ public:
                     BarrierFeature barrierFeature);
     ~BarrierOption() {}
 
-    virtual double bsprice() = 0;
     virtual double bntprice(unsigned int steps, BinomialType bntType) = 0;
 
     double getBarrier() const;
