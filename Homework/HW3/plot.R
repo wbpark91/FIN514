@@ -54,7 +54,7 @@ lines(error8$N, error8$LR1, col="green")
 abline(h = 0)
 
 #------------------------------------------------------------------------------
-## PROBLEM 2
+## PROBLEM 3
 setwd("/Users/wanbaep2/Desktop/FIN514/Homework/HW3/Q3")
 error9 = read.csv("out.csv") #Error of CRR: continuous barrier option
 
@@ -68,3 +68,21 @@ mtext(side = 4, line = 0.5, expression(Lambda))
 legend("topright",
        legend=c("Error", expression(Lambda)),
        lty=c(1,0), pch=c(NA, 16), col=c("red", "black"))
+
+#------------------------------------------------------------------------------
+## PROBLEM 4
+setwd("/Users/wanbaep2/Desktop/FIN514/Homework/HW3/Q4")
+error10 = read.csv("out.csv") #Error of CRR: discrete barrier option
+
+par(mfrow = c(1, 1))
+plot(error10$STEPS, error10$ERROR, type = 'p', main = "Error of CRR method",
+     xlab = "STEPS", ylab = "ERROR", col = 'red')
+par(new = T)
+with(error10, plot(error10$STEPS, error10$LAMBDA, pch=16, axes=F, xlab=NA, ylab=NA, cex=0.3), col = 'red')
+axis(side = 4)
+mtext(side = 4, line = 0.5, expression(Lambda))
+legend("topright",
+       legend=c("Error", expression(Lambda)),
+       lty=c(0,0), pch=c(1, 16), col=c("red", "black"))
+abline(h = 0.5)
+
