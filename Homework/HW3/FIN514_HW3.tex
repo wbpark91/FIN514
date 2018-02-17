@@ -249,6 +249,6 @@
 		\caption{Error of CRR method}
 		\label{fig:prob4-error}
 	\end{figure}
-	From this figure, the behavior of errors is similar to the error of continuous barrier option from Problem 3. It is periodic, and has jumps. It is observed that jumps occur at $\Lambda = 0$, which means as steps increases, barrier gets closer to some value of node, and if barrier gets slightly different to the value, jump occurs.
+	From this figure, the behavior of errors is similar to the error of continuous barrier option from Problem 3. It is periodic, and has jumps. It is observed that jumps occur at $\Lambda = 0$, which means as steps increases, barrier gets closer to some value of node, and if barrier gets slightly different to the value, jump occurs. The interesting thing is it appears that error is close to zero when $\Lambda$ is close to 0.5. $\Lambda = 0.5$ means that barrier is located between values of each node. Unlike the continuous barrier option where the error was minimized when $\Lambda$ was equal to zero, discrete barrier option has minimum error when $\Lambda$ is equal to 0.5. %%WHY????
 \end{homeworkProblem}
 \end{document}
