@@ -237,4 +237,18 @@
 	Since we know the behavior of error corresponding to $\Lambda$, it is possible to use this property to improve convergence of model. It is observed that error which have equal corresponding $\Lambda$ has monotonically decreasing features as number of steps increases. Therefore, if we choose several steps which makes equal $\Lambda$, and get set of option values, then use extrapolation technique for pricing options, the accuracy would be increased since the errors of the set is monotonically decreasing.
 \end{homeworkProblem}
 
+%----------------------------------------------------------------------------------------
+%	PROBLEM 4
+%----------------------------------------------------------------------------------------
+\begin{homeworkProblem}
+	Using the same method of Problem 3, we plotted errors of CRR model against steps. Figure \ref{fig:prob4-error} represents the behavior of errors of this model. $\Lambda$ is calculated at $t = 0.16$, which is when barrier can be applied. The red and black dot represents errors and $\Lambda$, and the horizontal black line is $\Lambda = 0.5$ line.
+	%% Error of Barrier Option
+	\begin{figure}[ht]
+		\centering
+		\includegraphics[scale = 0.5]{Q4/error.png}
+		\caption{Error of CRR method}
+		\label{fig:prob4-error}
+	\end{figure}
+	From this figure, the behavior of errors is similar to the error of continuous barrier option from Problem 3. It is periodic, and has jumps. It is observed that jumps occur at $\Lambda = 0$, which means as steps increases, barrier gets closer to some value of node, and if barrier gets slightly different to the value, jump occurs.
+\end{homeworkProblem}
 \end{document}
