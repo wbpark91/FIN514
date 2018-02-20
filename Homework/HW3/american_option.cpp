@@ -62,6 +62,14 @@ double AmericanOption::bntprice(unsigned int steps, BinomialType bntType) {
     return tree[0];
 }
 
+void AmericanOption::printExer() {
+    for (int i = 0; i < exerTree_.size(); ++i) {
+        for (int j = 0; j < exerTree_[i].size(); ++j) {
+            std::cout << exerTree_[i][j] << " ";
+        }
+        std::cout << std::endl;
+    }
+}
 
 std::vector<double> AmericanOption::exerciseBound(unsigned int steps, BinomialType bntType) {
     bntprice(steps, bntType);

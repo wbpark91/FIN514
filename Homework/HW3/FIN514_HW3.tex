@@ -42,7 +42,7 @@
 
 % Set up the header and footer
 \pagestyle{fancy}
-\lhead{\hmwkAuthorName} % Top left header
+%\lhead{\hmwkAuthorName} % Top left header
 \chead{\hmwkClass\ (\hmwkTitle)} % Top center header
 %%\rhead{\firstxmark} 
 \rhead{} % Top right header
@@ -102,10 +102,10 @@
 %----------------------------------------------------------------------------------------
 
 \newcommand{\hmwkTitle}{Problem Set\ \#3} % Assignment title
-\newcommand{\hmwkDueDate}{Sunday,\ February\ 18,\ 2018} % Due date
+\newcommand{\hmwkDueDate}{Monday,\ February\ 19,\ 2018} % Due date
 \newcommand{\hmwkClass}{FIN\ 514} % Course/class
 \newcommand{\hmwkClassTime}{9:30am} % Class/lecture time
-\newcommand{\hmwkAuthorName}{Wanbae Park} % Your name
+\newcommand{\hmwkAuthorName}{Wanbae Park, Yongduk Kim, Inhyuk Lee} % Your name
 
 %----------------------------------------------------------------------------------------
 %	TITLE PAGE
@@ -192,7 +192,7 @@
 		\caption{Error of each method}
 		\label{fig:prob2-error}
 	\end{figure}
-	In similar to result of European option, error of CRR method seems to have sawtoothing shape and periodic humps when valuing American options. Moreover, the amount of error is even larger than errors of case in European options. In contrast, the other two methods seems to have errors converging to zero monotonically. Since it is already known that sawtoothing and periodic humps of error comes from non-linearity of payoff, and in European or American option case, the non-linearity occurs only at the maturity of option, error of BD method has monotonicity and convergence because the method avoid pricing option at maturity. LR method also avoid non-linearity using other parameters to construct binomial tree, errors of LR method also have good features. In other words, CRR method has problems because it has no efforts to handle non-linearity problems. The problem of CRR method also occurs when calculating exercise bound of options. Figure \ref{fig:prob2-boundary} shows the exercise boundary using CRR method.(the number 0 of plot means early exercise is not optimal at the step.) 
+	In similar to result of European option, error of CRR method seems to have sawtoothing shape and periodic humps when valuing American options. Moreover, the amount of error is even larger than errors of case in European options. In contrast, the other two methods seems to have errors converging to zero monotonically. Since it is already known that sawtoothing and periodic humps of error comes from non-linearity of payoff, and in European or American option case, the non-linearity occurs only at the maturity of option, error of BD method has monotonicity and convergence because the method avoid pricing option at maturity. LR method also avoid non-linearity using other parameters to construct binomial tree, errors of LR method also have good features. In other words, CRR method has problems because it has no efforts to handle non-linearity problems. \\ The problem of CRR method also occurs when calculating exercise bound of options. Figure \ref{fig:prob2-boundary} shows the exercise boundary using CRR method.(the number 0 of plot means early exercise is not optimal at the step.) 
 	%% Exercise boundary of CRR
 	\begin{figure}[ht]
 		\centering
@@ -200,7 +200,8 @@
 		\caption{Exercise boundary: CRR method}
 		\label{fig:prob2-boundary}
 	\end{figure}
-	Theoretically, the exercise boundary of a put option should be a smooth increasing function. However, as shown in figure, the shape of boundary is sawtoothing, which does not coincide with theory. Since the optimal exercise boundary is distorted under CRR method, exercise-or-not decision at each node will be distorted consequently, and finally it causes distortion of option prices.	\\
+	%% Exercise boundary: time-value of option part.
+	Theoretically, the exercise boundary of a put option should be a smooth increasing function. It is because early exercise has a trade-off with time value of options. In other words, to exercise option early means intrinsic value is larger than time value of the option. Therefore, since time value of option decreases smoothly, exercise boundary should increase smoothly. However, as shown in figure, the shape of boundary is sawtoothing, which does not coincide with theory. Since the optimal exercise boundary is distorted under CRR method, exercise-or-not decision at each node will be distorted consequently, and finally it causes distortion of option prices.	\\
 	Similar to Problem 1, it is possible to reduce error using extrapolation technique, if monotonically decreasing error is guaranteed. For each method, we calculated errors of option price using extrapolation technique. Figure \ref{fig:prob2-error_extra} shows the error of each method using extrapolation technique.
 	%% Extrapolation Error
 	\begin{figure}[ht]
