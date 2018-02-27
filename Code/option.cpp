@@ -4,19 +4,9 @@
 #include <iostream>
 
 Option::Option(double strike, double maturity, OptionType type)
-    :strike_(strike), t_(maturity), type_(type) { }
+    :strike_(strike), type_(type), Derivative(maturity) { }
 
-Option::~Option() {
-    delete payoff_;
-}
-
-void Option::setMarketVariable(MarketVariable mktVar) {
-    mktVar_ = mktVar;
-    s_ = mktVar.getSpot();
-    r_ = mktVar.getRate();
-    div_ = mktVar.getDiv();
-    sigma_ = mktVar.getVol();
-}
+Option::~Option() {}
 
 std::vector<double> Option::makeTree(unsigned int steps, BinomialType bntType) {
     dt_ = t_ / steps;
