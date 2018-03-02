@@ -33,5 +33,5 @@ double stdev(std::vector<double> vec) {
     for (int i = 0; i < vec.size(); ++i) {
         result += (vec[i] - average) * (vec[i] - average);
     }
-        return sqrt(result / vec.size());
+    return sqrt(result / vec.size());
 }
