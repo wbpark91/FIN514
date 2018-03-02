@@ -40,7 +40,10 @@ double Straddle::delta() {
 
 /* Calculate expected payoff using dynamic replication */
 /* Need to moved into derivative class */
-double Straddle::hedgeSimulation(unsigned int numPath, unsigned int steps) {
+std::vector<double> Straddle::hedgeSimulation(unsigned int numPath, unsigned int steps, double r) {
+    /* Result */
+    std::vector<double> result;
+
     /* Payoffs */
     std::vector<double> payoffStream;
 
@@ -80,7 +83,7 @@ double Straddle::hedgeSimulation(unsigned int numPath, unsigned int steps) {
                 double delta = call_ -> delta() + put_ -> delta();
 
                 /* new cash */
-                double cash = cashStream[j-1] * exp(r_ * dt) + s * (deltaStream[j-1] - delta);
+                double cash = cashStream[j-1] * exp(r * dt) + s * (deltaStream[j-1] - delta);
 
                 /* update stream */
                 spotStream.push_back(s);
@@ -88,10 +91,14 @@ double Straddle::hedgeSimulation(unsigned int numPath, unsigned int steps) {
                 cashStream.push_back(cash);
             }
             else {
-                double payoff = delta[j-1] * s + cash * exp(r_ * dt);
+                double payoff = delta[j-1] * s + cash * exp(r * dt);
                 payoffStream.push_back(payoff);
             }
         }
     }
-    /* Need to calculate average, standard deviation */
+    /* Calculate average, standard deviation */
+    result.push_back(mean(payoffStream));
+    result.push_back(stdev(payoffStream));
+
+    return result;
 }

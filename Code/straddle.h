@@ -3,6 +3,7 @@
 #include "plainvanilla_option.h"
 #include "marketvariable.h"
 #include "payoff.h"
+#include <vector>
 
 class StraddlePayoff: public Payoff {
     StraddlePayoff(double strike);
@@ -19,7 +20,7 @@ public:
     double bsprice();
     double delta();
 
-    double hedgeSimulation(unsigned int numPath, unsigned int steps);
+    std::vector<double> hedgeSimulation(unsigned int numPath, unsigned int steps, double r = r_);
 private:
     double strike_;
     PlainVanillaOption* call_;
