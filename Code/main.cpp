@@ -1,25 +1,21 @@
 #include <iostream>
-#include <numeric>
 #include <vector>
-#include <cmath>
-
-double mean(std::vector<double> vec) {
-    double result = std::accumulate(vec.begin(), vec.end(), 0.0 / vec.size());
-    return result / vec.size();
-}
-
-double stdev(std::vector<double> vec) {
-    double average = mean(vec);
-    double result = 0;
-    for (int i = 0; i < vec.size(); ++i) {
-        result += (vec[i] - average) * (vec[i] - average);
-    }
-    return sqrt(result / vec.size());
-}
+#include "straddle.h"
+#include "marketvariable.h"
 
 int main(void) {
-    std::vector<double> vec = { 1.0, 2, 3, 4, 5 };
-    std::cout << "mean: " << mean(vec) << std::endl;
-    std::cout << "St.dev: " << stdev(vec) << std::endl;
+    std::vector<double> vol = {0.20, 0.30, 0.40, 0.50};
+    MarketVariable mktVar(100, 0.0, 0.0, 0.20);
+    Straddle strad(100, 1.0);
+
+    for (int i = 0; i < vol.size(); ++i) {
+        mktVar.setVol(vol[i]);
+        strad.setMarketVariable(mktVar);
+        std::vector<double> result = strad.hedgeSimulation(10000, 500, 0.07);
+        std::cout << "=======" << "Vol: " << vol[i] << "======" << std::endl;
+        std::cout << "Analytic Payoff: " << strad.expectedPayoff(0.07) << std::endl;
+        std::cout << "Expected Payoff: " << result[0] << std::endl;
+        std::cout << "Standard Deviation: " << result[1] << std::endl;
+    }
     return 0;
 }
