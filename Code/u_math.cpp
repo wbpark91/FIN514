@@ -25,3 +25,12 @@ double mean(std::vector<double> vec) {
     double result = std::accumulate(vec.begin(), vec.end(), 0.0 / vec.size());
     return result;
 }
+
+double stdev(std::vector<double> vec) {
+    double average = mean(vec);
+    double result = 0;
+    for (int i = 0; i < vec.size(); ++i) {
+        result += (vec[i] - average) * (vec[i] - average);
+    }
+    return result / vec.size();
+}
