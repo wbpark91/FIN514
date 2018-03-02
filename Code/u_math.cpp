@@ -20,3 +20,8 @@ std::vector<double> findBAValue(std::vector<double> vec, double value) {
     std::cout << "Cannot find the closest below and above value." << std::endl;
     exit(1);
 }
+
+double mean(std::vector<double> vec) {
+    double result = std::accumulate(vec.begin(), vec.end(), 0.0 / vec.size());
+    return result;
+}
