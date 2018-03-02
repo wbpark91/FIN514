@@ -18,5 +18,5 @@ double PlainVanillaOption::bsprice() {
 }
 
 double PlainVanillaOption::delta() {
-    return normcdf(type_ * getd1());
+    return type_ * normcdf(type_ * getd1());
 }
