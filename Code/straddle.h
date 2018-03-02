@@ -18,6 +18,8 @@ public:
     virtual void setMarketVariable(MarketVariable mktVar);
     double bsprice();
     double delta();
+
+    double hedgeSimulation(unsigned int numPath, unsigned int steps);
 private:
     double strike_;
     PlainVanillaOption* call_;
