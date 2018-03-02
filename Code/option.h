@@ -21,6 +21,7 @@ public:
 
     /* Set function */
     void setSpot(double s);
+    void setMaturity(double t);
 
     virtual double bntprice(unsigned int steps, BinomialType bntType) = 0;
 protected:

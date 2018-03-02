@@ -108,3 +108,7 @@ double Option::h(double x, double n) {
 void Option::setSpot(double s) {
     s_ = s;
 }
+
+void Option::setMaturity(double t) {
+    t_ = t;
+}
