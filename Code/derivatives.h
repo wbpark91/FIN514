@@ -12,7 +12,7 @@ public:
     Derivative(double maturity);
     virtual ~Derivative();
 
-    void setMarketVariable(MarketVariable mktVar);
+    virtual void setMarketVariable(MarketVariable mktVar);
     virtual double bntprice(unsigned int steps, BinomialType bntType) = 0;
 protected:
     /* Market Variables */
