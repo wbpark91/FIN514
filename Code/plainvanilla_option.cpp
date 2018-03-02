@@ -16,3 +16,7 @@ double PlainVanillaOption::bsprice() {
 
     return type_ * (s_ * exp(-div_ * t_) * nd1 - strike_ * exp(-r_ * t_) * nd2);
 }
+
+double PlainVanillaOption::delta() {
+    return normcdf(type_ * getd1());
+}

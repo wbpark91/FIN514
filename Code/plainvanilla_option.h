@@ -8,6 +8,8 @@ public:
     PlainVanillaOption(double strike, double maturity, OptionType type);
     virtual ~PlainVanillaOption() {};
     virtual double bsprice();
+
+    double delta();
 private:
 };
 
