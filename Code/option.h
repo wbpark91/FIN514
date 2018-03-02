@@ -20,7 +20,7 @@ public:
     double getLambda(double value, unsigned int steps, unsigned int node, BinomialType bntType);
 
     /* Set function */
-    virtual void setSpot(double s);
+    void setSpot(double s);
 
     virtual double bntprice(unsigned int steps, BinomialType bntType) = 0;
 protected:
