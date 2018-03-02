@@ -112,3 +112,7 @@ void Option::setSpot(double s) {
 void Option::setMaturity(double t) {
     t_ = t;
 }
+
+void Option::setRate(double r) {
+    r_ = r;
+}
