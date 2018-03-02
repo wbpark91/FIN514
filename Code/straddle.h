@@ -6,8 +6,9 @@
 #include <vector>
 
 class StraddlePayoff: public Payoff {
+public:
     StraddlePayoff(double strike);
-    virtual double operator(double s);
+    virtual double operator()(double s);
 private:
     double strike_;
 };
@@ -19,8 +20,10 @@ public:
     virtual void setMarketVariable(MarketVariable mktVar);
     double bsprice();
     double delta();
+    virtual double bntprice(unsigned int steps, BinomialType bntType) { return 0; }
 
-    std::vector<double> hedgeSimulation(unsigned int numPath, unsigned int steps, double r = r_);
+    std::vector<double> hedgeSimulation(unsigned int numPath, unsigned int steps, double mu);
+    double expectedPayoff(double mu);
 private:
     double strike_;
     PlainVanillaOption* call_;
