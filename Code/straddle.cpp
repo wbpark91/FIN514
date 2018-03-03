@@ -112,7 +112,7 @@ std::vector<double> Straddle::hedgeSimulation(unsigned int numPath, unsigned int
     }
     /* Calculate average, standard deviation */
     double avg = mean(payoffStream);
-    double dev = stdev(payoffStream);
+    double dev = stdev(payoffStream) / sqrt(numPath);
     result.push_back(avg);
     result.push_back(dev);
 
