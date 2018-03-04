@@ -12,4 +12,10 @@ double extrapolate(double x1, double y1, double x2, double y2, int order = 1);
 
 /* Find the closest below and above value */
 std::vector<double> findBAValue(std::vector<double> vec, double value);
+
+/* Find average value of vector */
+double mean(std::vector<double> vec);
+
+/* Find standard deviation of vector */
+double stdev(std::vector<double> vec);
 #endif

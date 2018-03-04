@@ -1,5 +1,6 @@
 #include "u_math.h"
 #include <iostream>
+#include <numeric>
 #include <cmath>
 
 double extrapolate(double x1, double y1, double x2, double y2, int order) {
@@ -19,4 +20,18 @@ std::vector<double> findBAValue(std::vector<double> vec, double value) {
     }
     std::cout << "Cannot find the closest below and above value." << std::endl;
     exit(1);
+}
+
+double mean(std::vector<double> vec) {
+    double result = std::accumulate(vec.begin(), vec.end(), 0.0 / vec.size());
+    return result / vec.size();
+}
+
+double stdev(std::vector<double> vec) {
+    double average = mean(vec);
+    double result = 0;
+    for (int i = 0; i < vec.size(); ++i) {
+        result += (vec[i] - average) * (vec[i] - average);
+    }
+    return sqrt(result / vec.size());
 }
