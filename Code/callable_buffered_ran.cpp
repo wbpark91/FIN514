@@ -1,6 +1,8 @@
 #include "callable_buffered_ran.h"
 #include "u_math.h"
 #include <iostream>
+#include <fstream>
+#include <iomanip>
 #include <cmath>
 
 double CallableBufferedRANPayoff::operator()(double spot) {
@@ -30,6 +32,10 @@ CallableBufferedRAN::CallableBufferedRAN(double faceValue, double couponRate,
 double CallableBufferedRAN::bntprice(unsigned int steps, BinomialType bntType) {
     std::vector<double> tree = makeTree(steps, bntType);
 
+    /* Set up output stream */
+    std::ofstream outfile;
+    outfile.open("result.csv", std::ios::app);
+
     /* Backward induction */
     double prevSpot;                /* Spot price at previous period */
     double exValue, contValue;      /* Exercise Value and Continuation Value */
@@ -40,9 +46,9 @@ double CallableBufferedRAN::bntprice(unsigned int steps, BinomialType bntType) {
     for (int i = tree.size() - 1; i > 0; --i) {
         int k = tree.size() - i;    /* Remaining steps until maturity */
 
-        /* coupon: day count convention - 30/360 */
-        double coupon = exp(-r_ * dt_ * k) * faceValue_ * couponRate_ * (1 / 360.0);
-
+        /* coupon: day count convention - 30/360 */ /* Need to be adjusted */
+        double coupon = exp(-r_ * dt_ * k) * faceValue_ * couponRate_ * (1 / 250.0);
+        std::cout << coupon << std::endl;
         // std::cout << i << ", " << days << ", " << dayIndex << std::endl;
 
         for (int j = 0; j < i; ++j) {
@@ -64,9 +70,10 @@ double CallableBufferedRAN::bntprice(unsigned int steps, BinomialType bntType) {
                 dayIndex--;
                 days = daysBetween_[dayIndex];
             }
-            //std::cout << tree[j] << " ";
+            outfile << tree[j] << ",";
         }
-        //std::cout << std::endl;
+        outfile << std::endl;
     }
+    outfile.close();
     return tree[0];
 }

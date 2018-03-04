@@ -5,7 +5,7 @@
 
 int main(void) {
 
-    MarketVariable mktVar(100, 0.027085, 0.01322, 0.2018);
+    MarketVariable mktVar(100, 0.027078, 0.01322, 0.2018);
     std::vector<double> cpnSchedule = {20, 40, 62, 84, 103, 126, 147, 167, 188
                                     , 209, 228, 250, 270, 290, 312, 333, 353
                                     , 376, 396, 417, 439, 458, 478, 499, 519
