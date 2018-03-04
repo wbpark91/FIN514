@@ -1,0 +1,25 @@
+#Makefile
+
+#MACRO
+BASE = /Users/park-wanbae
+CC = g++
+CFLAGS -O -Wall
+EFILE = $(BASE)/Desktop
+INCLS = $(LOC)/lib
+LOC = /usr/local
+
+all: problem1
+
+option:
+	g++ -c *option.cpp
+payoff:
+	g++ -c *payoff.cpp
+etc:
+	g++ -c normal.cpp u_math.cpp
+problem1: option payoff etc
+	g++ -o problem1 main.cpp	*option.o	*payoff.o	normal.o	u_math.o
+clear:
+	rm -f *option.o
+	rm -f *payoff.o
+	rm -f normal.o
+	rm -f u_math.o

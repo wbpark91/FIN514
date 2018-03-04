@@ -1,0 +1,11 @@
+Undefined symbols for architecture x86_64:
+  "PlainvanillaOption::bsprice()", referenced from:
+      _main in main-564f02.o
+  "PlainvanillaOption::PlainvanillaOption(double, double, double, double, double, double, OptionType)", referenced from:
+      _main in main-564f02.o
+  "Option::bntprice(unsigned int, BinomialType)", referenced from:
+      _main in main-564f02.o
+  "Option::~Option()", referenced from:
+      PlainvanillaOption::~PlainvanillaOption() in main-564f02.o
+ld: symbol(s) not found for architecture x86_64
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
