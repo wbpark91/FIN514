@@ -250,7 +250,7 @@
 			&= \mu_2 Y dt + \sigma_2 YdX_2 + (-\mu_1 + \sigma^2_1)Ydt - \sigma_1 Y dX_1 - \sigma_1 \sigma_2 \rho Ydt ~~ (\because dX_1 dX_2 = \rho dt)
 	\end{aligned}
 	\end{equation*}
-	Let $\sigma_3 X_3$ = $\sigma_1 X_1 + \sigma_2 X_2$, where $\sigma_3 = \sqrt{\sigma_1^2 + \sigma_2^2 + 2\rho \sigma_1 \sigma_2}$. Since $X_1$ and $X_2$ have expected value zero, $\E[X_3]$ also equal to zero. Furthermore, $\Var[X_3] = \Var[\sigma_1 X_1 + \sigma_2 X_2] / \sigma_3^2 = (\sigma_1^2 + \sigma_2^2 + 2\rho \sigma_1 \sigma_2)t / \sigma_3^2 = t$. Therefore, $\sigma_3 X_3 = \sigma_1 X_1 + \sigma_2 X_2$. Finally $dY$ can be represented as follows.
+	Let $\sigma_3 X_3$ = $\sigma_1 X_1 + \sigma_2 X_2$, where $\sigma_3 = \sqrt{\sigma_1^2 + \sigma_2^2 + 2\rho \sigma_1 \sigma_2}$. Since $X_1$ and $X_2$ have expected value zero, $\E[X_3]$ also equal to zero. Furthermore, $\Var[X_3] = \Var[\sigma_1 X_1 + \sigma_2 X_2] / \sigma_3^2 = (\sigma_1^2 + \sigma_2^2 + 2\rho \sigma_1 \sigma_2)t / \sigma_3^2 = t$. Since $X_1$ and $X_2$ are normally distributed and have independent increments, $X_3$ is also normally distributed and has independent increments, so $X_3$ is a Brownian motion. Therefore, $\sigma_3 X_3 = \sigma_1 X_1 + \sigma_2 X_2$. Finally $dY$ can be represented as follows.
 	\begin{equation*}
 	\begin{aligned}
 		dY 	&= (\mu_2 - \mu_1 + \sigma_1^2 - \sigma_1 \sigma_2 \rho)Ydt + \sigma_3 Y dX_3	\\
@@ -270,6 +270,84 @@
 				&\text{where} ~~ \mu_Z = \mu_Y + r_E.
 	\end{aligned}
 	\end{equation*}
+\end{enumerate}
+\end{homeworkProblem}
+%----------------------------------------------------------------------------------------
+%	PROBLEM 4
+%----------------------------------------------------------------------------------------
+\begin{homeworkProblem}
+\begin{enumerate}[a.]
+	\item		%% a.
+	By Ito's product rule,
+	\begin{equation*}
+	\begin{aligned}
+		dY 	&= d(S_1 S_2)		\\
+			&= S_1 dS_2 + S_2 dS_1 + dS_1 dS_2	\\
+			&= S_1(\mu_2 S_2 dt + \sigma_1 S_2 dX_2) + S_2(\mu_1 S_1 dt + \sigma_1 S_1 dX_1) + (\mu_1 S_1 dt + \sigma_1 S_1 dX_1)(\mu_2 S_2 dt + \sigma_2 S_2 dX_2)	\\
+			&= (\mu_1 + \mu_2 + \sigma_1 \sigma_2 \rho) Ydt + Y(\sigma_1 dX_1 + \sigma_2 dX_2)
+	\end{aligned}
+	\end{equation*}
+	Let $X_{3t} = \frac{\sigma_1 X_1 + \sigma_2 X_2}{\sigma_3}$, where $\sigma_3 = \sqrt{\sigma_1^2 + \sigma_2^2 + 2 \sigma_1 \sigma_2 \rho}$, then since $\E[X_{1t}] = \E[X_{2t}] = 0$, $\E[X_{3t}] = 0$, and $\Var[X_{3t}] = \frac{(\sigma_1^2 + \sigma_2^2 + \sigma_1 \sigma_2 \rho)t}{\sigma_3^2} = t$. Since $X_{1t}$ and $X_{2t}$ are normally distributed and have independent increments, $X_3$ is also normally distributed and has independent increments. Therefore, $X_{3t}$ is a Brownian motion. Finally, $dY$ can be represented as follows.
+	\begin{equation*}
+	\begin{aligned}
+		dY 	&= (\mu_1 + \mu_2 + \sigma_1 \sigma_2 \rho)Ydt + \sigma_3 Y dX_3	\\
+			&= \mu_Y Ydt + \sigma_Y Y dX_3	\\
+		\text{where}~~ \mu_Y &= \mu_1 + \mu_2 + \sigma_1 \sigma_2 \rho, \sigma_Y = \sqrt{\sigma_1^2 + \sigma_2^2 + 2 \sigma_1 \sigma_2 \rho}
+	\end{aligned}
+	\end{equation*}
+	\item		%% b.
+	Since $Y = S_1 S_2$, the payoff of call option is represented as $\max(Y^{\frac{1}{2}} - K, 0)$.
+	\item		%% c.
+	By Ito's lemma,
+	\begin{equation*}
+	\begin{aligned}
+		dZ 	&= \itox{Z}{Y}	\\
+			&= \frac{1}{2}Y^{-\frac{1}{2}}(\mu_Y Y dt + \sigma_Y Y dX_3) + \frac{1}{2} \left(-\frac{1}{2}\right)Y^{-\frac{3}{2}}(\sigma^2_Y Y^2 dt)	\\
+			&= \frac{1}{2}[\mu_Y Y^{\frac{1}{2}} dt + \sigma_Y Y^{\frac{1}{2}} dX_3 - \frac{1}{2}Y^{\frac{1}{2}} \sigma_Y^2 dt]	\\
+			&= \frac{1}{2}\left[Z\left( \mu_Y - \frac{1}{2} \sigma_Y^2 \right)dt + \sigma_Y ZdX_3\right]
+	\end{aligned}
+	\end{equation*}
+	\item		%% d.
+	By Ito's lemma,
+	\begin{equation*}
+	\begin{aligned}
+		d\log Z 	&=	\frac{1}{2} [(\mu_Y - \sigma^2_Y)dt + \sigma_Y dX_3]	\\
+		\Rightarrow \log Z_T &= \log Z_0 + \frac{1}{2}[(\mu_Y - \sigma^2_Y)T + \sigma_Y X_{3T}]	\\
+		\Rightarrow \frac{Z_T}{Z_0} &= \exp \left(\frac{1}{2}(\mu_Y - \sigma_Y^2)T + \sigma_Y X_{3T} \right)	\\
+		\Rightarrow \E \left[\frac{Z_T}{Z_0} \right] &= \frac{1}{2}(\mu_Y - \sigma_Y^2)T + \frac{1}{4} \sigma_Y^2 T	\\
+										&= \frac{1}{2}(\mu_Y - \frac{1}{2} \sigma_Y^2)T
+	\end{aligned}
+	\end{equation*}
+	Therefore, expected return of the geometric average of two stocks is $\frac{1}{2}(\mu_Y - \frac{1}{2}\sigma^2_Y)$.
+\end{enumerate}
+\end{homeworkProblem}
+%----------------------------------------------------------------------------------------
+%	PROBLEM 5
+%----------------------------------------------------------------------------------------
+\begin{homeworkProblem}
+\begin{enumerate}[a.]
+	\item		%% a.
+	By Ito's lemma,
+	\begin{equation*}
+	\begin{aligned}
+		dV 	&= \itotx{V}{S}	\\
+			&= \left( \pdv{V}{t} + (\mu - \delta)S \pdv{V}{S} + \frac{1}{2} \sigma^2 S^2 \pdv[2]{V}{S} \right)dt + \sigma S \pdv{V}{S} dX
+	\end{aligned}
+	\end{equation*}
+	\item		%% b.
+	If the value $\mu$ equals to $r$, drift term of $dV$ becomes equal to left hand side of the pde.
+	\item		%% c.
+	Since $\frac{dV}{V}$ can be interpreted to rate of return of option, $\E[\frac{dV}{V}]$ can be interpreted as expected return of the option. If $\mu = r$, then $\E[\frac{dV}{V}] = (\pdv{V}{t} + (r - \delta)S \pdv{V}{S} + \frac{1}{2} \sigma^2 S^2 \pdv[2]{V}{S}) / V$, which equals $r$ regarding the pde. Therefore, setting $\mu$ equals to $r$ includes an assumption that expected rate of return of option is risk-free rate.
+	\item		%% d.
+	If $\mu = r$, by Ito's lemma,
+	\begin{equation*}
+	\begin{aligned}
+		dF 	&= -(r - \delta)Fdt + \frac{F}{S}((r - \delta)S(t)dt + \sigma S(t)dX(t))	\\
+			&= -(r - \delta)Fdt + (r - \delta)Fdt + \sigma FdX(t)	\\
+			&= \sigma FdX(t)
+	\end{aligned}
+	\end{equation*}
+	It does not have a drift term.
 \end{enumerate}
 \end{homeworkProblem}
 \end{document}
