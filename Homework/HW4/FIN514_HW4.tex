@@ -29,6 +29,7 @@
 \usepackage{enumerate}
 \usepackage{booktabs}
 \usepackage{amsmath}
+\usepackage{amssymb}
 
 % Margins
 \topmargin=-0.45in
@@ -219,5 +220,56 @@
 			&= (\mu - r)Fdt + \sigma FdX(t)
 	\end{aligned}
 	\end{equation*}
+\end{homeworkProblem}
+%----------------------------------------------------------------------------------------
+%	PROBLEM 3
+%----------------------------------------------------------------------------------------
+\begin{homeworkProblem}
+\begin{enumerate}[a.]
+	\item		%% a.
+	By Ito's product rule,
+	\begin{equation*}
+	\begin{aligned}
+		dY 	&= d\left(\frac{S_2}{S_1}\right)	\\
+			&= \frac{1}{S_1}dS_2 + S_2 d\left(\frac{1}{S_1}\right) + dS_2 d\left(\frac{1}{S_1}\right)	
+	\end{aligned}
+	\end{equation*}
+	By Ito's lemma,
+	\begin{equation*}
+	\begin{aligned}
+		d\left(\frac{1}{S_1}\right) 	&= -\frac{1}{S^2_1}dS_1 + \frac{1}{2} \times 2(dS_1)^2	\\
+							&= -\frac{1}{S^2_1}(\mu_1 S_1 dt + \sigma_1 S_1 dX_1) + \frac{1}{S^3_1}\sigma^2_1 S^2_1 dt	\\
+							&= -\frac{\mu_1}{S_1}dt - \frac{\sigma_1}{S_1}dX_1 + \frac{\sigma^2_1}{S_1}dt	\\
+							&= \frac{-\mu_1 + \sigma^2_1}{S_1}dt - \frac{\sigma_1}{S_1}dX_1
+	\end{aligned}
+	\end{equation*}
+	Therefore,
+	\begin{equation*}
+	\begin{aligned}
+		dY 	&= \frac{1}{S_1}(\mu_2 S_2 dt + \sigma_2 S_2 dX_2) + S_2\left(\frac{-\mu_1 + \sigma^2_1}{S_1}dt - \frac{\sigma_1}{S_1}dX_1\right) + (\mu_2 S_2 dt + \sigma_2 S_2 dX_2) \left(\frac{-\mu_1 + \sigma^2_1}{S_1}dt - \frac{\sigma_1}{S_1}dX_1\right)	\\
+			&= \mu_2 Y dt + \sigma_2 YdX_2 + (-\mu_1 + \sigma^2_1)Ydt - \sigma_1 Y dX_1 - \sigma_1 \sigma_2 \rho Ydt ~~ (\because dX_1 dX_2 = \rho dt)
+	\end{aligned}
+	\end{equation*}
+	Let $\sigma_3 X_3$ = $\sigma_1 X_1 + \sigma_2 X_2$, where $\sigma_3 = \sqrt{\sigma_1^2 + \sigma_2^2 + 2\rho \sigma_1 \sigma_2}$. Since $X_1$ and $X_2$ have expected value zero, $\E[X_3]$ also equal to zero. Furthermore, $\Var[X_3] = \Var[\sigma_1 X_1 + \sigma_2 X_2] / \sigma_3^2 = (\sigma_1^2 + \sigma_2^2 + 2\rho \sigma_1 \sigma_2)t / \sigma_3^2 = t$. Therefore, $\sigma_3 X_3 = \sigma_1 X_1 + \sigma_2 X_2$. Finally $dY$ can be represented as follows.
+	\begin{equation*}
+	\begin{aligned}
+		dY 	&= (\mu_2 - \mu_1 + \sigma_1^2 - \sigma_1 \sigma_2 \rho)Ydt + \sigma_3 Y dX_3	\\
+			&= \mu_Y Y_t dt + \sigma_Y Y_t dX_{3t}	\\
+		\text{where~} \mu_Y &= \mu_2 - \mu_1 + \sigma_1^2 - \sigma_1 \sigma_2 \rho, \sigma_Y = \sqrt{\sigma_1^2 + \sigma_2^2 + 2\rho \sigma_1 \sigma_2}
+	\end{aligned}
+	\end{equation*}
+	\item		%% b.
+	By Ito's product rule,
+	\begin{equation*}
+	\begin{aligned}
+		dZ_t 		&= d(Y_t B_{Et})	\\
+				&= B_{Et}dY_t + Y_tdB_{Et} + dY_t dB_{Et}	\\
+				&= B_E{t}(\mu_Y Y_t dt + \sigma_Y Y_t dX_{3t}) + Y_t(r_EB_{Et}dt),	~~ dB_{Et} = r_EB_{Et}dt ~~ \text{because the bond is riskless.}	\\
+				&= (\mu_Y + r_E)Z_t dt + \sigma_Y Z_t dX_{3t}	\\
+				&= (\mu_Z)Z_t dt + \sigma_Y Z_t dX_{3t}	\\
+				&\text{where} ~~ \mu_Z = \mu_Y + r_E.
+	\end{aligned}
+	\end{equation*}
+\end{enumerate}
 \end{homeworkProblem}
 \end{document}
