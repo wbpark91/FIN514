@@ -250,7 +250,7 @@
 			&= \mu_2 Y dt + \sigma_2 YdX_2 + (-\mu_1 + \sigma^2_1)Ydt - \sigma_1 Y dX_1 - \sigma_1 \sigma_2 \rho Ydt ~~ (\because dX_1 dX_2 = \rho dt)
 	\end{aligned}
 	\end{equation*}
-	Let $\sigma_3 X_3$ = $\sigma_1 X_1 + \sigma_2 X_2$, where $\sigma_3 = \sqrt{\sigma_1^2 + \sigma_2^2 + 2\rho \sigma_1 \sigma_2}$. Since $X_1$ and $X_2$ have expected value zero, $\E[X_3]$ also equal to zero. Furthermore, $\Var[X_3] = \Var[\sigma_1 X_1 + \sigma_2 X_2] / \sigma_3^2 = (\sigma_1^2 + \sigma_2^2 + 2\rho \sigma_1 \sigma_2)t / \sigma_3^2 = t$. Since $X_1$ and $X_2$ are normally distributed and have independent increments, $X_3$ is also normally distributed and has independent increments, so $X_3$ is a Brownian motion. Therefore, $\sigma_3 X_3 = \sigma_1 X_1 + \sigma_2 X_2$. Finally $dY$ can be represented as follows.
+	Let $\sigma_3 X_3$ = $\sigma_1 X_1 - \sigma_2 X_2$, where $\sigma_3 = \sqrt{\sigma_1^2 + \sigma_2^2 - 2\rho \sigma_1 \sigma_2}$. Since $X_1$ and $X_2$ have expected value zero, $\E[X_3]$ also equal to zero. Furthermore, $\Var[X_3] = \Var[\sigma_1 X_1 - \sigma_2 X_2] / \sigma_3^2 = (\sigma_1^2 + \sigma_2^2 - 2\rho \sigma_1 \sigma_2)t / \sigma_3^2 = t$. Since $X_1$ and $X_2$ are normally distributed and have independent increments, $X_3$ is also normally distributed and has independent increments, so $X_3$ is a Brownian motion. Therefore, $\sigma_3 X_3 = \sigma_1 X_1 - \sigma_2 X_2$. Finally $dY$ can be represented as follows.
 	\begin{equation*}
 	\begin{aligned}
 		dY 	&= (\mu_2 - \mu_1 + \sigma_1^2 - \sigma_1 \sigma_2 \rho)Ydt + \sigma_3 Y dX_3	\\
@@ -302,23 +302,23 @@
 	\begin{equation*}
 	\begin{aligned}
 		dZ 	&= \itox{Z}{Y}	\\
-			&= \frac{1}{2}Y^{-\frac{1}{2}}(\mu_Y Y dt + \sigma_Y Y dX_3) + \frac{1}{2} \left(-\frac{1}{2}\right)Y^{-\frac{3}{2}}(\sigma^2_Y Y^2 dt)	\\
-			&= \frac{1}{2}[\mu_Y Y^{\frac{1}{2}} dt + \sigma_Y Y^{\frac{1}{2}} dX_3 - \frac{1}{2}Y^{\frac{1}{2}} \sigma_Y^2 dt]	\\
-			&= \frac{1}{2}\left[Z\left( \mu_Y - \frac{1}{2} \sigma_Y^2 \right)dt + \sigma_Y ZdX_3\right]
+			&= \frac{1}{2}Y^{-\frac{1}{2}}(\mu_Y Y dt + \sigma_Y Y dX_3) + \frac{1}{2} \left(-\frac{1}{4}\right)Y^{-\frac{3}{2}}(\sigma^2_Y Y^2 dt)	\\
+			&= \frac{1}{2}[\mu_Y Y^{\frac{1}{2}} dt + \sigma_Y Y^{\frac{1}{2}} dX_3 - \frac{1}{4}Y^{\frac{1}{2}} \sigma_Y^2 dt]	\\
+			&= \frac{1}{2}\left[Z\left( \mu_Y - \frac{1}{4} \sigma_Y^2 \right)dt + \sigma_Y ZdX_3\right]
 	\end{aligned}
 	\end{equation*}
 	\item		%% d.
 	By Ito's lemma,
 	\begin{equation*}
 	\begin{aligned}
-		d\log Z 	&=	\frac{1}{2} [(\mu_Y - \sigma^2_Y)dt + \sigma_Y dX_3]	\\
-		\Rightarrow \log Z_T &= \log Z_0 + \frac{1}{2}[(\mu_Y - \sigma^2_Y)T + \sigma_Y X_{3T}]	\\
-		\Rightarrow \frac{Z_T}{Z_0} &= \exp \left(\frac{1}{2}(\mu_Y - \sigma_Y^2)T + \sigma_Y X_{3T} \right)	\\
-		\Rightarrow \E \left[\frac{Z_T}{Z_0} \right] &= \frac{1}{2}(\mu_Y - \sigma_Y^2)T + \frac{1}{4} \sigma_Y^2 T	\\
-										&= \frac{1}{2}(\mu_Y - \frac{1}{2} \sigma_Y^2)T
+		d\log Z 	&=	\frac{1}{2} [(\mu_Y - \frac{1}{2}\sigma^2_Y)dt + \sigma_Y dX_3]	\\
+		\Rightarrow \log Z_T &= \log Z_0 + \frac{1}{2}[(\mu_Y - \frac{1}{2} \sigma^2_Y)T + \sigma_Y X_{3T}]	\\
+		\Rightarrow \frac{Z_T}{Z_0} &= \exp \left(\frac{1}{2}(\mu_Y - \frac{1}{2} \sigma_Y^2)T + \sigma_Y X_{3T} \right)	\\
+		\Rightarrow \E \left[\frac{Z_T}{Z_0} \right] &= \frac{1}{2}(\mu_Y - \frac{1}{2} \sigma_Y^2)T + \frac{1}{4} \sigma_Y^2 T	\\
+										&= \frac{1}{2}\mu_YT
 	\end{aligned}
 	\end{equation*}
-	Therefore, expected return of the geometric average of two stocks is $\frac{1}{2}(\mu_Y - \frac{1}{2}\sigma^2_Y)$.
+	Therefore, expected return of the geometric average of two stocks is $\frac{1}{2}\mu_YT$.
 \end{enumerate}
 \end{homeworkProblem}
 %----------------------------------------------------------------------------------------
