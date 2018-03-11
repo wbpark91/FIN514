@@ -340,7 +340,84 @@
 							&= e^{-r_PT}(S_{20}e^{(r_P - r_E)T} N(d_1) - S_{10}N(d_1))
 		\end{aligned}
 	\end{equation*}
-
 \end{enumerate}
+\end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 5
+%----------------------------------------------------------------------------------------
+\begin{homeworkProblem}
+	\begin{enumerate}[(a)]
+		\item	%% problem (a)
+		By Ito's product rule,
+		\begin{equation*}
+			\begin{aligned}
+				dY 	&= d(S_1S_2)	\\
+					&= S_1dS_2 + S_2dS_1 + dS_1dS_2	\\
+					&= S_1(\mu_2 S_2 dt + \sigma_2 S_2 dX_2) + S_2(\mu_1 S_1 dt + \sigma_1 S_1 dX_1)
+						+ (\mu_1 S_1 dt + \sigma_1 S_1 dX_1)(\mu_2 S_2 dt + \sigma_2 S_2 dX_2)	\\
+					&= (\mu_1 + \mu_2 + \sigma_1 \sigma_2 \rho)Y_tdt
+						+ \sigma_1 Y dX_1 + \sigma_2 Y dX_2	\\
+					&= \mu_Y Ydt + \sigma_Y Y dX_3	\\
+				\text{where} ~~ \mu_Y &= \mu_1 + \mu_2 + \sigma_1 \sigma_2 \rho,
+					\sigma_Y = \sqrt{\sigma_1^2 + \sigma_2^2 + 2\sigma_1 \sigma_2 \rho},
+					X_3 = \frac{\sigma_1 X_1 + \sigma_2 X_2}{\sqrt{\sigma_1^2 + \sigma_2^2 + 2\sigma_1 \sigma_2 \rho}}
+			\end{aligned}
+		\end{equation*}
+		\item	%% problem (b)
+		Payoff can be represented as $\max((S_1S_2)^{\frac{1}{2}} - K, 0) = \max(Y^{\frac{1}{2}} - K, 0)$.
+		\item	%% problem (c)
+		By Ito's lemma,
+		\begin{equation*}
+			\begin{aligned}
+				dZ 	&= \pdv{Z}{Y}dY + \frac{1}{2}\pdv[2]{Z}{Y}(dY)^2	\\
+					&= \frac{1}{2}Y^{-\frac{1}{2}} (\mu_Y Y dt + \sigma_Y Y dX_3)
+						+ \frac{1}{2} (-\frac{1}{4}) Y^{-\frac{3}{2}} \sigma_Y^2 Y^2 dt	\\
+					&= \frac{1}{2}(\mu_Y - \frac{1}{4} \sigma_Y^2)Y^{\frac{1}{2}}dt
+						+ \frac{1}{2} \sigma_Y Y^{\frac{1}{2}}dX_3
+			\end{aligned}
+		\end{equation*}
+		\item	%% problem (d)
+		Since we assume self-financing portfolio,
+		\begin{equation*}
+			\begin{aligned}
+				d\pi	&= -dV + \Delta dZ + \beta dB	\\
+						&= -(\pdv{V}{t}dt + \pdv{V}{Z}dZ + \frac{1}{2}\sigma_Y^2 Z^2 dt)
+							+ \Delta dZ + \beta rBdt
+			\end{aligned}
+		\end{equation*}
+		Choose $\Delta = \pdv{V}{Z}$, then
+		\begin{equation*}
+			\begin{aligned}
+				d\pi = -(\pdv{Z}{t} + \frac{1}{2}\sigma_Y^2 Z^2)dt
+					+ r(V - \pdv{V}{Z})dt = 0	\\
+				\Rightarrow \pdv{V}{t} + \frac{1}{2}\sigma_Y^2 Z^2 + rZ \pdv{V}{Z} - rV = 0
+			\end{aligned}
+		\end{equation*}
+		Therefore, $V(Z, t)$ follows Black-Scholes pde in terms of Z.
+		\item	%% problem (e)
+		From the general Black-Scholes pde: $\pdv{V}{t} + \frac{1}{2}a^2X^2 \pdv{V}{X} + bX \pdv{V}{X} - cV = 0$,
+		the risk-neutral expected return of underlying asset is $b$,
+		the coefficient of first partial derivatives.
+		Therefore, risk-neutral expeced return of geometic average of two stocks is $r$, the risk-free rate.
+		\item	%% problem (f)
+		By analogy of evaluating European call option from Black-Scholes pde,
+		value of geometric average call option is evaluated as follows.
+		\begin{equation*}
+			\begin{aligned}
+				V(S_1, S_2, t) 	&= e^{-r(T - t)}(Ze^{r(T - t)}N(d_1) - KN(d_2))	\\
+								&= e^{-r(T - t)}((S_1S_2)^{\frac{1}{2}})e^{r(T - t)}N(d_1) - KN(d_2))	\\
+				\text{where} ~~ d_1 &= \frac{\ln((S_1S_2)^\frac{1}{2} / K) + (r + \frac{1}{2}\sigma_Y^2)(T - t)}{\sigma_Y \sqrt{T - t}}	\\
+								d_2 &= d_1 - \sigma_Y \sqrt{T - t}
+			\end{aligned}
+		\end{equation*}
+		\item	%% problem (g)
+		If correlation between two stocks increases, option value also increases.
+		It is because if correlation gets higher, volatility of geometric average also gets higher,
+		and option value increases as volatility increases. If there is negative correlation between stocks,
+		although one of them increases, the other decreases, therefore geometric average does not changes much.
+		Mathematically, since $\sigma_Y = \sqrt{\sigma_1^2 + \sigma_2^2 + 2\sigma_1 \sigma_2 \rho}$,
+		if correlation $\rho$ increases, $\sigma_Y$ increases, hence option value increases.
+	\end{enumerate}
 \end{homeworkProblem}
 \end{document}
