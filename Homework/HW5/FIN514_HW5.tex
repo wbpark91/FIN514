@@ -230,4 +230,117 @@
 		\end{equation*}
 \end{enumerate}
 \end{homeworkProblem}
+
+%----------------------------------------------------------------------------------------
+%	PROBLEM 4
+%----------------------------------------------------------------------------------------
+\begin{homeworkProblem}
+\begin{enumerate}[(a)]
+	\item	%% problem (a)
+	By Ito's product rule, $dY_t = d(\frac{S_{1t}}{S_{2t}})
+	= S_{2t}d(\frac{1}{S_{1t}}) + \frac{1}{S_{1t}}dS_{2t} + d(\frac{1}{S_{1t}})dS_{2t}$.
+	And by Ito's lemma,
+	\begin{equation*}
+	\begin{aligned}
+		d(\frac{1}{S_{1t}})	&= -\frac{1}{S_{1t}^2}dS_{1t} +
+								\frac{1}{2} \times 2 \times \frac{1}{S_{1t}^3}(dS_{1t})^2	\\
+							&= -\frac{1}{S_{1t}^2}(\mu_1 S_{1t}dt + \sigma_1 S_{1t} dX_{1t})
+								+ \frac{1}{S_{1t}^3}\sigma_1^2 S_{1t}^2 dt	\\
+							&= (-\mu_1 + \sigma_1^2) \frac{1}{S_{1t}}dt - \sigma_1 \frac{1}{S_{1t}}dX_{1t}
+	\end{aligned}
+	\end{equation*}
+	Therefore, the following equation must hold.
+	\begin{equation*}
+		\begin{aligned}
+			dY_t	&= S_{2t}(-\mu_1 + \sigma_1^2) \frac{1}{S_{1t}}dt - \sigma_1 \frac{1}{S_{1t}}dX_{1t})
+						+ \frac{1}{S_{1t}}(\mu_2 S_{2t}dt + \sigma_2 S_{2t}dX_{2t})	\\
+						~~ &+ (-\mu_1 + \sigma_1^2) \frac{1}{S_{1t}}dt - \sigma_1 \frac{1}{S_{1t}}dX_{1t})
+						(\frac{1}{S_{1t}}(\mu_2 S_{2t}dt + \sigma_2 S_{2t}dX_{2t}))	\\
+					&= (-\mu_1 + \sigma_1^2)Y_tdt - \sigma_1 Y_t dX_{1t}
+						+ \mu_2 Y_t dt + \sigma_2 Y_t dX_{1t}
+						- \sigma_1\sigma_2\rho Y_t dt ~~ (\text{Since~} dX_{1t}dX_{2t} = \rho dt).	\\
+					&= (-\mu_1 + \mu_2 + \sigma_1^2 - \sigma_1\sigma_2\rho)Y_tdt
+						- \sigma_1Y_tdX_{1t} + \sigma_2Y_tdX_{2t}
+		\end{aligned}
+	\end{equation*}
+	If we choose $X_{3t} = \frac{-\sigma_1 X_{1t} + \sigma_2 X_{2t}}{\sqrt{\sigma_1^2 + \sigma_2^2 - 2\sigma_1\sigma_2\rho}}$,
+	then the equation above is represented as follows.
+	\begin{equation*}
+		\begin{aligned}
+			dY_t &= \mu_Y Y_t dt + \sigma_Y Y_t dX_{3t}	\\
+			\text{where} ~~ \mu_Y &= -\mu_1 + \mu_2 + \sigma_1^2 - \sigma_1\sigma_2\rho,
+			\sigma_Y = \sqrt{\sigma_1^2 + \sigma_2^2 - 2\sigma_1\sigma_2\rho}
+		\end{aligned}
+	\end{equation*}
+	\item	%% problem (b)
+	By Ito's product rule,
+	\begin{equation*}
+		\begin{aligned}
+			dZ_t 	&= d(Y_tB_{Et})	\\
+					&= B_{Et}dY_t + Y_tdB_{Et} + dY_tdB_{Et}	\\
+					&= B_{Et}(\mu_Y Y_tdt + \sigma_Y Y_t dX_{3t})
+						+ Y_t(r_E B_{Et}dt)
+						+ (\mu_Y Y_tdt + \sigma_Y Y_t dX_{3t})(Y_tr_E B_{Et}dt)	\\
+					&= (\mu_Y + r_E)Y_tB_{Et}dt + \sigma_Y Y_tB_{Et}dX_{3t}	\\
+					&= \mu_Z Z_t dt + \sigma_Y Z_t dX_{3t}	\\
+					\text{where} ~~ \mu_Z &= \mu_Y + r_E.
+		\end{aligned}
+	\end{equation*}
+	\item	%% problem (c)
+	$U(Y, T) = \frac{V(S_{1T}, S_{2T}, T)}{S_{1T}}
+				= \frac{1000 \times \max(S_{2T} - S_{1T}, 0)}{S_{1T}}
+				= 1000 \times \max(Y_T - 1, 0)$.
+	Payoff of exchange option denominated in GBP is same as payoff of an European option whose underlying asset is
+	price of Euros in terms of GBP and strike price is 1.
+	\item	%% problem (d)
+	Let $\Pi_t = \frac{\pi_t}{S_{1t}}$, then $\Pi_t = -U_t + \Delta_tZ_t + \beta_t B_{Pt}$.
+	Therefore, the following equation has to follow.
+	\begin{equation*}
+		\begin{aligned}
+			d\Pi_t 	&= -dU_t + \Delta_t dZ_t + \beta_tdB_{Pt} ~~ \text{by self-financing.}	\\
+					&= -(\pdv{U_t}{t} + \mu_Y Y_t \pdv{U_t}{Y_t} + \frac{1}{2}\sigma_Y^2 Y^2_t \pdv[2]{U_t}{Y_t})dt
+						+\Delta_t \mu_Z Z_tdt + \beta_t r_P B_{Pt}dt
+						-\sigma_Y Y_t \pdv{U_t}{Y_t}dX_{3t} + \Delta_t \sigma_Y Z_t dX_{3t}
+		\end{aligned}
+	\end{equation*}
+	Choose $\Delta_t$ so that $-\sigma_Y Y_t \pdv{U_t}{Y_t} + \Delta_t \sigma_Y Z_t = 0$, then
+	$\Delta_t = \frac{Y_t}{Z_t}\pdv{U_t}{Y_t} = B_{Et} \pdv{U_t}{Y_t}$, and therefore,
+	\begin{equation*}
+		\begin{aligned}
+			-(\pdv{U_t}{t} + \mu_Y Y_t \pdv{U_t}{Y_t} + \frac{1}{2}\sigma_Y^2 Y_t^2 \pdv[2]{U_t}{Y_t})dt
+				+ \frac{Y_t}{Z_t}\pdv{U_t}{Z_t}\mu_Z Z_tdt
+				+ r_P(U_t - \frac{Y_t}{Z_t}\pdv{U_t}{Y_t} Z_t)dt = 0	\\
+			\Rightarrow \pdv{U_t}{t} + \mu_Y Y_t \pdv{U_t}{Y_t} + \frac{1}{2}\sigma_Y^2 Y_t^2 \pdv[2]{U_t}{Y_t}
+				- \mu_Z Y_t \pdv{U_t}{Y_t} + r_P Y_t \pdv{U_t}{Y_t} - r_PU_t = 0	\\
+			\Rightarrow \pdv{U_t}{t} + (\mu_Y - \mu_Z + r_P)Y_t\pdv{U_t}{Y_t}
+				+ \frac{1}{2}\sigma_Y^2 Y_t^2 \pdv[2]{U_t}{Y_t} - r_P U_t = 0
+		\end{aligned}
+	\end{equation*}
+	Since $\mu_Y - \mu_Z = -r_E$, the following pde holds.
+	\begin{equation*}
+		\begin{aligned}
+			\pdv{U_t}{t} + (r_P - r_E)Y_t\pdv{U_t}{Y_t}
+				+ \frac{1}{2}\sigma_Y^2 Y_t^2 \pdv[2]{U_t}{Y_t} - r_P U_t = 0
+		\end{aligned}
+	\end{equation*}
+	\item	%% problem (e)
+	Since $U(Y, T) = 1000 \times \max(Y_T - 1, 0)$, by analogy of European call option,
+	$U(Y, 0)$ is evaluated as:
+	\begin{equation*}
+		\begin{aligned}
+			U(Y, 0)  &= e^{-r_PT}(Y_te^{(r_P - r_E)T} N(d_1) - N(d_2))	\\
+			\text{where} ~~ d_1 &= \frac{\ln Y_t + (r_P - r_E + \frac{1}{2}\sigma_Y^2)T}{\sigma_Y \sqrt{T}}	\\
+			d_2 &= d_1 - \sigma_Y \sqrt{T}
+		\end{aligned}
+	\end{equation*}
+	Therefore, $V(S_1, S_2, 0) = S_{10} \times U(Y, 0)$ is evaluated as:
+	\begin{equation*}
+		\begin{aligned}
+			V(S_1, S_2, 0) 	&= S_{10} e^{-r_PT}(Y_te^{(r_P - r_E)T} N(d_1) - N(d_2))	\\
+							&= e^{-r_PT}(S_{20}e^{(r_P - r_E)T} N(d_1) - S_{10}N(d_1))
+		\end{aligned}
+	\end{equation*}
+
+\end{enumerate}
+\end{homeworkProblem}
 \end{document}
