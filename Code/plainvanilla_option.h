@@ -9,7 +9,7 @@ public:
     virtual ~PlainVanillaOption() {};
     virtual double bsprice();
 
-    double delta();
+    virtual double delta();
 private:
 };
 
