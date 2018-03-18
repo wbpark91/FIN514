@@ -9,6 +9,8 @@ public:
     ~EuropeanOption() {}
     virtual double bsprice() = 0;
     virtual double bntprice(unsigned int steps, BinomialType bntType);
+
+    virtual double delta() = 0;
 protected:
 };
 #endif
