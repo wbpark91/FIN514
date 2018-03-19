@@ -21,7 +21,7 @@ protected:
     MarketVariable mktVar_;
 
     /* Payoff */
-    std::shared_ptr<Payoff> payoff_;
+    std::unique_ptr<Payoff> payoff_;
 
     /* Binomial Tree Paramaters */
     double u_, d_, q_, dt_;
