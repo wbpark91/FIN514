@@ -2,29 +2,31 @@
 
 #UGL Coding
 #BASE = /Users/wanbaep2/Desktop
-#LOC = $(BASE)/FIN514/Code
+LOC = $(BASE)/Derivatives
 EFILE = $(BASE)/FIN514/Homework/HW3/Result
 
 #Home Coding
 BASE = /Users/park-wanbae/Desktop
-LOC = $(BASE)/MFE/2018-1/FIN514/Code
+LOC = $(BASE)/MFE/2018-1/Derivatives
+OPTION = $(LOC)/option
+ETC = $(LOC)/etc
 OBJS = derivatives.o *option.o *payoff.o normal.o u_math.o
-INCLS = -I$(LOC)
+INCLS = -I$(ETC) -I$(OPTION)
 CFLAGS = -std=c++11 -o
 #EFILE = $(BASE)/MFE/2018-1/FIN514/Homework/HW3/Result
 
 all: problem1 problem2 problem3 problem4
 derivative:
-	g++ $(INCLS) -c $(LOC)/derivatives.cpp
+	g++ $(INCLS) -c $(OPTION)/derivatives.cpp
 
 option:
-	g++ $(INCLS) -c $(LOC)/*option.cpp
+	g++ $(INCLS) -c $(OPTION)/*option.cpp
 
 payoff:
-	g++ $(INCLS) -c $(LOC)/*payoff.cpp
+	g++ $(INCLS) -c $(OPTION)/*payoff.cpp
 
 etc:
-	g++ $(INCLS) -c $(LOC)/normal.cpp $(LOC)/u_math.cpp
+	g++ $(INCLS) -c $(ETC)/normal.cpp $(ETC)/u_math.cpp
 
 problem1: derivative option payoff etc
 	g++ $(INCLS) $(CFLAGS) problem1 problem1.cpp $(OBJS)
