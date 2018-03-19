@@ -66,15 +66,15 @@ int main(int argc, char **argv) {
         double crrValue2 = option1.bntprice(2 * i * stepSize1, CRR);
         double rbValue1 = option1.bntprice(i * stepSize1, RB);
         double rbValue2 = option1.bntprice(2 * i * stepSize1, RB);
-        double crrExtraValue = extrapolate(i * stepSize1, crrValue1, 2 * i * stepSize1, crrValue2);
-        double rbExtraValue = extrapolate(i * stepSize1, rbValue1, 2 * i * stepSize1, rbValue2);
+        double crrExtraValue = extrapolate<double>(i * stepSize1, crrValue1, 2 * i * stepSize1, crrValue2);
+        double rbExtraValue = extrapolate<double>(i * stepSize1, rbValue1, 2 * i * stepSize1, rbValue2);
         crrRbExtra << i * stepSize1 << "," << 2 * i * stepSize1 << "," << (crrExtraValue - bsp) << "," << (rbExtraValue - bsp) << std::endl;
     }
 
     for (int i = 1; i <= 10; ++i) {
         double lrValue1 = option1.bntprice(i * stepSize2 + 1, LR);
         double lrValue2 = option1.bntprice(2 * i * stepSize2 - 1, LR);
-        double lrExtraValue = extrapolate(i * stepSize2 + 1, lrValue1, 2 * i * stepSize2 - 1, lrValue2, 2);
+        double lrExtraValue = extrapolate<double>(i * stepSize2 + 1, lrValue1, 2 * i * stepSize2 - 1, lrValue2, 2);
         lrExtra << i * stepSize2 + 1 << "," << 2 * i * stepSize2 - 1 << "," << (lrExtraValue - bsp) << std::endl;
     }
 
