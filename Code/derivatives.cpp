@@ -7,7 +7,6 @@ Derivative::Derivative() {}
 Derivative::Derivative(double maturity): t_(maturity) {}
 
 Derivative::~Derivative() {
-    delete payoff_;
 }
 
 void Derivative::setMarketVariable(MarketVariable mktVar) {

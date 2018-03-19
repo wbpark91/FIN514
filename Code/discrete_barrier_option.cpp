@@ -9,7 +9,7 @@ DiscreteBarrierOption::DiscreteBarrierOption(double strike, double barrier,
                     :BarrierOption(strike, barrier, maturity, type, barrierFeature),
                      barrierDate_(date) {
                          /* set a payoff as plain vanilla option */
-                         payoff_ = new PlainVanillaPayoff(strike, type);
+                         payoff_.reset(new PlainVanillaPayoff(strike, type));
                         /* sort barrierdate to descending order to use for binomial tree */
                         std::sort(barrierDate_.rbegin(), barrierDate_.rend());
                     }

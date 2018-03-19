@@ -11,7 +11,7 @@ double StraddlePayoff::operator()(double s) {
 }
 
 Straddle::Straddle(double strike, double maturity): strike_(strike), Derivative(maturity) {
-    payoff_ = new StraddlePayoff(strike);
+    payoff_.reset(new StraddlePayoff(strike));
     call_ = new PlainVanillaOption(strike, maturity, Call);
     put_ = new PlainVanillaOption(strike, maturity, Put);
 }

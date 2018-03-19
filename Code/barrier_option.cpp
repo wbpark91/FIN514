@@ -6,7 +6,7 @@
 BarrierOption::BarrierOption(double strike, double barrier, double maturity, OptionType type,
                             BarrierFeature barrierFeature)
                             :Option(strike, maturity, type), barrier_(barrier), barrierFeature_(barrierFeature) {
-                                payoff_ = new BarrierPayoff(strike, barrier, type, barrierFeature);
+                                payoff_.reset(new BarrierPayoff(strike, barrier, type, barrierFeature));
                             }
 
 double BarrierOption::getBarrier() const {

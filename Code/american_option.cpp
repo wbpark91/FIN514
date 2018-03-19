@@ -7,7 +7,7 @@
 
 AmericanOption::AmericanOption(double strike, double maturity, OptionType type)
     :Option(strike, maturity, type) {
-    payoff_ = new PlainVanillaPayoff(strike, type);
+    payoff_.reset(new PlainVanillaPayoff(strike, type));
 }
 
 double AmericanOption::bntprice(unsigned int steps, BinomialType bntType) {

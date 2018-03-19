@@ -5,7 +5,7 @@
 
 PlainVanillaOption::PlainVanillaOption(double strike, double maturity, OptionType type)
         : EuropeanOption(strike, maturity, type) {
-    payoff_ = new PlainVanillaPayoff(strike, type);
+    payoff_.reset(new PlainVanillaPayoff(strike, type));
 }
 
 double PlainVanillaOption::bsprice() {

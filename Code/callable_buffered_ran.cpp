@@ -20,7 +20,7 @@ CallableBufferedRAN::CallableBufferedRAN(double faceValue, double couponRate,
                                     barrier_(barrier), buffer_(buffer) {
 
     /* Payoff setting */
-    payoff_ = new CallableBufferedRANPayoff(faceValue, barrier, buffer);
+    payoff_.reset(new CallableBufferedRANPayoff(faceValue, barrier, buffer));
 
     /* Make daysBetween */
     daysBetween_.push_back(cpnSchedule[0]); /* from day 0 to first cpn date */

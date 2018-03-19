@@ -3,6 +3,7 @@
 #include "marketvariable.h"
 #include "payoff.h"
 #include <vector>
+#include <memory>
 
 enum BinomialType { CRR, RB, LR, BD };
 
@@ -20,7 +21,7 @@ protected:
     MarketVariable mktVar_;
 
     /* Payoff */
-    Payoff *payoff_;
+    std::shared_ptr<Payoff> payoff_;
 
     /* Binomial Tree Paramaters */
     double u_, d_, q_, dt_;
