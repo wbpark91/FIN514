@@ -11,13 +11,15 @@ class ContCpnBuf: public Derivative {
 public:
     /* Constructors and Destructor */
     ContCpnBuf();
-    ContCpnBuf(double principal, double maturity, double barrier,
+    ContCpnBuf(double principal, double coupon, double maturity, double barrier,
             double buffer, CpnFreq freq);
     ~ContCpnBuf();
 
     /* set functions */
     void setTrigger(bool trigger);
     void setForex(Forex forex);
+    void setCorr(double corr);
+    virtual void setMarketVariable(MarketVariable mktVar);
 
     /* pricing functions */
     virtual double bntprice(unsigned int steps, BinomialType bntType);
