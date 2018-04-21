@@ -325,6 +325,71 @@
 		Where $K$ is strike price of the option, and $Q$ is a probability
 		measure in which $V(t)/S(t)$ is a martingale.
 		\item	%% (d)
+		In order to evaluate call option value, we need to derive the solution
+		of SDE $dS(t) = (r + \sigma^2)S(t)dt + \sigma S(t) d\til{X}(t)$ first.
+		The solution is derived as follows.
+		%% SOLUTION OF SDE
+		\begin{equation*}
+			\begin{aligned}
+				d\log S(t)	&= \frac{1}{S(t)}dS(t) - \frac{1}{2} \frac{1}{S^2(t)}(dS(t))^2	\\
+							&= \left( r + \frac{1}{2}\sigma^2 \right)dt
+								+ \sigma d\til{X}(t)	\\
+				\Rightarrow S(T)	&= S(t)\exp \left[ \left( r + \frac{1}{2}\sigma^2 \right)(T - t)
+				 	+ \sigma \sqrt{T - t} \phi \right]	\\
+					\phi &\sim N(0, 1)
+			\end{aligned}
+		\end{equation*}
+		Plugging the result of equation above, we can evaluate call option value
+		at time $t$ as follows.
+		%% CALL OPTION VALUE
+		\begin{equation*}
+			\begin{aligned}
+				V(t)	&= S(t) \E_t^Q \left[ \max \left(1 - \frac{K}{S(T)}, 0 \right) \right]	\\
+						&= S(t) \E_t^Q
+				\left[ \max \left(1 - \frac{K}{S(t)\exp [ ( r + \frac{1}{2}\sigma^2 )(T - t)
+				+ \sigma \sqrt{T - t} \phi ]}, 0 \right) \right]	\\
+			\end{aligned}
+		\end{equation*}
+		Since $1 - \frac{K}{S(t)\exp [ ( r + \frac{1}{2}\sigma^2 )(T - t)
+		+ \sigma \sqrt{T - t} \phi ]} \geq 0$ is equivalent to
+		$\phi \geq \frac{\log(K / S(t) - (r + \frac{1}{2}\sigma^2)(T - t)}
+			{\sigma \sqrt{T - t}} \equiv L$, and $\phi$ follows standard
+		normal distribution, call option value can be calculated as follows.
+		%% CALL OPTION VALUE 2
+		\begin{equation*}
+			\begin{aligned}
+				V(t)	&= S(t) \int_L^{\infty} {
+					\left( 1 - \frac{K}{S(t)
+					\exp[(r + \frac{1}{2}\sigma^2)(T - t) + \sigma \sqrt{T - t}x]} \right)
+				} {
+					\frac{1}{\sqrt{2\pi}} e^{\frac{1}{2}x^2} dx
+				}	\\
+					&= S(t) \int_L^{\infty}
+						\frac{1}{\sqrt{2\pi}} e^{ \frac{1}{2}x^2} dx
+					- K \int_L^{\infty}
+						\frac{1}{\sqrt{2\pi}} e^{-(r + \frac{1}{2}\sigma^2)(T - t)
+						- \sigma \sqrt{T - t}x - \frac{1}{2}x^2}dx	\\
+					&= S(t)(1 - N(L))
+						- Ke^{-r(T - t)} \int_L^{\infty}
+							\frac{1}{\sqrt{2\pi}} e^{-\frac{1}{2}(x + \sigma \sqrt{T - t})^2}dx	\\
+					&= S(t)(1 - N(L))
+						- Ke^{-r(T - t)} \int_{L + \sigma \sqrt{T - t}}^{\infty}
+							\frac{1}{\sqrt{2\pi}} e^{-\frac{1}{2} y^2}dy	\\
+					&= S(t)(1 - N(L)) - Ke^{-r(T - t)}(1 - N(L + \sigma \sqrt{T - t}))	\\
+					&= S(t)N(-L) - Ke^{-r(T - t)}N(-L - \sigma \sqrt{T - t})	\\
+					&= S(t)N(d_1) - Ke^{-r(T - t)}N(d_2)	\\
+			\end{aligned}
+		\end{equation*}
+		\begin{equation*}
+			\begin{aligned}
+				y 	&= x + \sigma \sqrt{T - t}	\\
+				d_1 &= \frac{\log(S_t / K) + (r + \frac{1}{2}\sigma^2)(T - t)}{\sigma \sqrt{T - t}}	\\
+				d_2 &= d_1 - \sigma \sqrt{T -t}
+			\end{aligned}
+		\end{equation*}
+		Which is the desired solution. It is not easier than when $B(t)$ was
+		numeraire because it also has some integration and transformation in
+		evaluating procedure.
 	\end{enumerate}
 \end{homeworkProblem}
 
