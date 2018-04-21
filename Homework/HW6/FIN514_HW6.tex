@@ -120,6 +120,11 @@
 \newcommand{\itotx}[2]{\pdv{#1}{t}dt + \pdv{#1}{#2}d#2 + \frac{1}{2}\pdv[2]{#1}{#2}(d#2)^2}
 
 %----------------------------------------------------------------------------------------
+%	BROWNIAN MOTION
+%----------------------------------------------------------------------------------------
+\newcommand{\til}[1]{\widetilde{#1}}
+
+%----------------------------------------------------------------------------------------
 %	NAME AND CLASS SECTION
 %----------------------------------------------------------------------------------------
 
@@ -168,6 +173,54 @@
 \begin{homeworkProblem}
 	\begin{enumerate}[(a)]
 		\item	%% (a)
+		By Ito's product rule, $dY(t)$ satisfies the following equation.
+		%% EQUATION: DYNAMICS OF Y(t)
+		\begin{equation*}
+			\begin{aligned}
+				dY(t)	&= B_P(t)dS(t) + S(t)dB_P(t) + dB_P(t)dS(t)	\\
+						&= B_P(t)[\mu S(t)dt + \sigma S(t)dX(t)] + r_PS(t)B_P(t)dt	\\
+						&= (\mu + r_P)Y(t)dt + \sigma Y(t)dX(t)
+			\end{aligned}
+		\end{equation*}
+		In order to find martingale measure with respect to $B(t)$ as a numeraire,
+		dynamics of $Y(t) / B(t)$ is derived as follows.
+		%% EQUATION: DYNAMICS OF Y(t) / B(t)
+		\begin{equation*}
+			\begin{aligned}
+				d \left( \frac{Y(t)}{B(t)} \right)
+					&= Y(t) d\left( \frac{1}{B(t)} \right)
+						+ \frac{1}{B(t)}dY(t) + dY(t) d \left( \frac{1}{B(t)} \right)	\\
+				d \left( \frac{1}{B(t)} \right)
+					&= -\frac{1}{B^2(t)}dB(t)	\\
+					&= -\frac{1}{B^2(t)}rB(t)dt = -r \frac{1}{B(t)}dt	\\
+				\Rightarrow d \left( \frac{Y(t)}{B(t)} \right)
+					&= Y(t) \left( -r \frac{1}{B(t)}dt \right)
+						+ \frac{1}{B(t)} [(\mu + r_P)Y(t)dt + \sigma Y(t)dX(t)]	\\
+					&= (\mu + r_P - r) \frac{Y(t)}{B(t)}dt + \sigma \frac{Y(t)}{B(t)}dX(t)
+			\end{aligned}
+		\end{equation*}
+		By Girsanov's theorem, there exists a probability measure such that
+		$\til{X}(t) = X(t) + \int_0^t \frac{\mu + r_P - r}{\sigma} ds$ is a
+		brownian motion under the measure. Therefore, by plugging
+		$dX(t) = d\til{X}(t) - \frac{\mu + r_P - r}{\sigma}dt$ into the equation
+		above, then $d\left( \frac{Y(t)}{B(t)} \right)$ becomes $\sigma \frac{Y(t)}{B(t)}d\til{X}(t)$,
+		hence becomes martingale because there is no drift.
+		Therefore, from the perspective of U.S dollar investor,
+		under risk-neutral measure,
+		$dX(t) = d\til{X}(t) - \frac{\mu + r_P - r}{\sigma}dt$.
+		By plugging it into dynamics of $Y(t)$, we can find dynamics of the U.S
+		price of a GBP bond under risk-neutral measure as follows.
+		%% EQUATION: DYNAMICS of Y(t) UNDER Q
+		\begin{equation*}
+			\begin{aligned}
+				dY(t)	&= (\mu + r_P)Y(t)dt + \sigma Y(t)dX(t)	\\
+						&= (\mu + r_P)Y(t)dt
+							+ \sigma Y(t)\left[ d\til{X}(t) - \frac{\mu + r_P - r}{\sigma}dt \right]	\\
+						&= rY(t)dt + \sigma Y(t) d\til{X}(t)
+			\end{aligned}
+		\end{equation*}
+		And it is consistent with the fact that expected return of every tradable
+		asset is risk-free rate under risk-neutral measure.
 		\item	%% (b)
 		\item	%% (c)
 	\end{enumerate}
