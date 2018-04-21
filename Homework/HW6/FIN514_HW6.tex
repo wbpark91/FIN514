@@ -222,7 +222,30 @@
 		And it is consistent with the fact that expected return of every tradable
 		asset is risk-free rate under risk-neutral measure.
 		\item	%% (b)
+		By plugging $dX(t) = d\til{X}(t) - \frac{\mu + r_P - r}{\sigma}dt$
+		into dynamics of $S(t)$, we can find dynamics of U.S. dollar price
+		of a British pound under risk-neutral probability as follows.
+		%% DYNAMICS OF S(t) UNDER Q
+		\begin{equation*}
+			\begin{aligned}
+				dS(t)	&= \mu S(t)dt + \sigma S(t) dX(t)	\\
+						&= \mu S(t)dt + \sigma S(t) \left[ d\til{X}(t) - \frac{\mu + r_P - r}{\sigma}dt \right]	\\
+						&= (r - r_P)S(t)dt + \sigma S(t) d\til{X}(t)
+			\end{aligned}
+		\end{equation*}
 		\item	%% (c)
+		Unlike the assumption of ordinary Black-Scholes-Merton formula,
+		since expected return of underlying asset has changed from $r$ to
+		$r - r_P$, formula for call option should be changed to following
+		equation.
+		%% EQUATION: FOREX OPTION FORMULA
+		\begin{equation*}
+			\begin{aligned}
+				&e^{-rT}[S_0 e^{(r - r_P)T}N(d_1) - KN(d_2)]	\\
+				&d_1 = \frac{\log(S_0 / K) + (r - r_P + \frac{1}{2} \sigma^2)T}{\sigma \sqrt{T}}	\\
+				&d_2 = d_1 - \sigma \sqrt{T}
+			\end{aligned}
+		\end{equation*}
 	\end{enumerate}
 \end{homeworkProblem}
 
