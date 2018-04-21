@@ -255,8 +255,75 @@
 \begin{homeworkProblem}
 	\begin{enumerate}[(a)]
 		\item	%% (a)
+		By Ito's product rule, dynamics of $B(t) / S(t)$ is as follows.
+		%% EQUATION: DYNAMICS OF B(t) / S(t)
+		\begin{equation*}
+			\begin{aligned}
+				d \left( \frac{B(t)}{S(t)} \right)
+					&= d\left( \frac{1}{S(t)} \right)B(t)
+						+ \frac{1}{S(t)}dB(t)
+						+ d\left(\frac{1}{S(t)} \right)dB(t)	\\
+				d \left( \frac{1}{S(t)} \right)
+					&= -\frac{1}{S^2(t)}dS(t) + \frac{1}{2} \times 2 \times \frac{1}{S^3(t)}(dS(t))^2	\\
+					&= -\frac{1}{S^2(t)}[(\mu - d)S(t)dt + \sigma S(t)dX(t)]
+						+ \frac{1}{S^3(t)} \sigma^2 S^2(t) dt	\\
+					&= [-(\mu - d) + \sigma^2] \frac{1}{S^2(t)}dt
+						- \sigma \frac{1}{S(t)}dX(t)	\\
+				\Rightarrow d \left( \frac{B(t)}{S(t)} \right)
+					&= \frac{B(t)}{S(t)}[-(\mu - d) + \sigma^2]dt
+						- \sigma \frac{B(t)}{S(t)} dX(t)
+						+ r \frac{B(t)}{S(t)} dt	\\
+					&= [r - (\mu - d) + \sigma^2] \frac{B(t)}{S(t)} dt
+						- \sigma \frac{B(t)}{S(t)} dX(t)
+			\end{aligned}
+		\end{equation*}
 		\item	%% (b)
+		By Girsanov's theorem, there exists a probability measure such that
+		$\til{X}(t) = X(t) - \int_0^t \frac{r - (\mu - d) + \sigma^2}{\sigma} ds$
+		is a brownian motion under the measure. Under the measure, process
+		$d \left( \frac{B(t)}{S(t)} \right)$ changes as follows.
+		%% DYNAMICS OF B(t)/S(t) UNDER Q
+		\begin{equation*}
+			\begin{aligned}
+				d \left( \frac{B(t)}{S(t)} \right)
+					&= [r - (\mu - d) + \sigma^2] \frac{B(t)}{S(t)} dt
+						- \sigma \frac{B(t)}{S(t)} dX(t)	\\
+					&= [r - (\mu - d) + \sigma^2] \frac{B(t)}{S(t)} dt
+						- \sigma \frac{B(t)}{S(t)} \left[d\til{X}(t)
+						+ \frac{r - (\mu - d) + \sigma^2}{\sigma} dt \right]	\\
+					&= - \sigma \frac{B(t)}{S(t)} d\til{X}(t)
+			\end{aligned}
+		\end{equation*}
+		Therefore, under the measure, $\frac{B(t)}{S(t)}$ is a martingale
+		since there is no drift term in dynamics.
+		Plugging $dX(t) = d\til{X}(t) + \frac{r - (\mu - d) + \sigma^2}{\sigma} dt$
+		into the process of $S(t)$, dynamics of $S(t)$ under martingale measure
+		with respect to $S(t)$ as a numeraire is as follows.
+		%% DYNAMICS OF S(t) UNDER Q
+		\begin{equation*}
+			\begin{aligned}
+				dS(t)	&= (\mu - d)S(t)dt + \sigma S(t)dX(t)	\\
+						&= (\mu - d)S(t)dt
+							+ \sigma S(t)\left[ d\til{X}(t) + \frac{r - (\mu - d)
+							+ \sigma^2}{\sigma} dt \right]	\\
+						&= (r + \sigma^2)S(t)dt + \sigma S(t) d\til{X}(t)
+			\end{aligned}
+		\end{equation*}
 		\item	%% (c)
+		Under the martingale measure with respect to $S(t)$ as a numeraire,
+		$V(t) / S(t)$ is also a martingale. Therefore, by definition of
+		martingale, European call option value $V(t)$ is derived as follows.
+		%% EUROPEAN CALL OPTION VALUE UNDER Q
+		\begin{equation*}
+			\begin{aligned}
+				\frac{V(t)}{S(t)} &= \E_t^Q \left[ \frac{V(T)}{S(T)} \right]	\\
+				\Rightarrow V(t) &= S(t) \E_t^Q \left[ \frac{V(T)}{S(T)} \right]	\\
+					&= S(t) \E_t^Q \left[ \frac{\max(S(T) - K, 0)}{S(T)} \right]	\\
+					&= S(t) \E_t^Q \left[ \max \left(1 - \frac{K}{S(T)}, 0 \right) \right]
+			\end{aligned}
+		\end{equation*}
+		Where $K$ is strike price of the option, and $Q$ is a probability
+		measure in which $V(t)/S(t)$ is a martingale.
 		\item	%% (d)
 	\end{enumerate}
 \end{homeworkProblem}
