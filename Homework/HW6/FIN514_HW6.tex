@@ -399,14 +399,151 @@
 \begin{homeworkProblem}
 	\begin{enumerate}[(a)]
 		\item	%% (a)
+		Using Ito's lemma, dynamics of $\log B_e$ is as follows.
+		%% DYNAMICS OF LOG(Be)
+		\begin{equation*}
+			\begin{aligned}
+				d\log B_e	&= \frac{1}{B_e}dB_e	\\
+							&= \frac{1}{B_e}r_e B_e dt \\
+							&= r_e dt
+			\end{aligned}
+		\end{equation*}
+		Since $B_e(0) = 0$, $B_e(T)$ is evaluated as $B_e(0)e^{r_e T} = e^{r_e T}$.
 		\item	%% (b)
+		By Ito's product rule, dynamics of $Z_e$ and $Z_g$ is derived as
+		follows.
+		%% DYNAMICS OF Ze
+		\begin{equation*}
+			\begin{aligned}
+				dZ_e	&= d(eB_e) = B_ede + edB_e + dB_ede	\\
+						&= B_e(\mu_e edt + \sigma_e e dX_2) + er_eB_edt	\\
+						&= (\mu_e + r_e)Z_edt + \sigma_e Z_e dX_2	\\
+				dZ_g	&= d(gB_g) = B_gdg + gdB_g + dB_gdg	\\
+						&= B_g(\mu_g gdt + \sigma_g g dX_1) + gr_gB_gdt	\\
+						&= (\mu_g + r_g)Z_gdt + \sigma_g Z_g dX_1
+			\end{aligned}
+		\end{equation*}
 		\item	%% (c)
+		By Ito's product rule, dynamics of $X$ is derived as follows.
+		%% DYNAMICS OF X
+		\begin{equation*}
+			\begin{aligned}
+				dX	&= d\left( \frac{g}{e} \right)
+						= \frac{1}{e}dg + gd\left( \frac{1}{e} \right) + dgd\left( \frac{1}{e} \right)	\\
+				d\left( \frac{1}{e} \right)
+					&= -\frac{1}{e^2}de + 2 \times \frac{1}{2} \times \frac{1}{e^3}(de)^2	\\
+					&= -\frac{1}{e^2}(\mu_e e dt + \sigma_e e dX_2)
+						+ \frac{1}{e^3}\sigma_e^2 e^2 dt	\\
+					&= (-\mu_e + \sigma_e^2) \frac{1}{e} dt - \sigma_e \frac{1}{e}dX_2	\\
+				\Rightarrow dX	&= \frac{1}{e}(\mu_g g dt + \sigma_g g dX_1)
+					+ g[(-\mu_e + \sigma_e^2)\frac{1}{e}dt - \sigma_e \frac{1}{e} dX_2]
+					+ (\mu_g g dt + \sigma_g g dX_1)[(-\mu_e + \sigma_e^2)\frac{1}{e}dt - \sigma_e \frac{1}{e} dX_2]	\\
+								&= (\mu_g - \mu_e + \sigma_e^2 - \rho \sigma_e \sigma_g)Xdt
+					+ X(\sigma_g dX_1 - \sigma_e dX_2)
+			\end{aligned}
+		\end{equation*}
+		Let $dX_3 = \frac{\sigma_g dX_1 - \sigma_e dX_2}{\sqrt{\sigma_g^2 - 2 \sigma_g \sigma_e + \sigma_e^2}}$.
+		Then by Levy's theorem, $X_3$ is a brownian motion.
+		Let $\sigma_X^2 = \sigma_g^2 - 2 \sigma_g \sigma_e + \sigma_e^2$,
+		then $dX$ can be represented as follows.
+		%% DYNAMICS OF X - 2
+		\begin{equation*}
+			\begin{aligned}
+				dX	&= (\mu_g - \mu_e + \sigma_e^2 - \rho \sigma_e \sigma_g)Xdt
+					+ \sigma_X X dX_3
+			\end{aligned}
+		\end{equation*}
 		\item	%% (d)
+		By Ito's product rule, dynamics of $Y$ is derived as follows.
+		%% DYNAMICS OF Y
+		\begin{equation*}
+			\begin{aligned}
+				dY 	&= d\left( \frac{Z_g}{Z_e} \right)
+					= Z_g d\left( \frac{1}{Z_e} \right) + \frac{1}{Z_e}dZ_g
+						+ dZ_g d\left( \frac{1}{Z_e} \right)	\\
+				d\left( \frac{1}{Z_e} \right) &=
+					-\frac{1}{Z_e^2}dZ_e + \frac{1}{Z_e^3}(dZ_e)^2	\\
+					&= -\frac{1}{Z_e}[(\mu_e + r_e)Z_edt + \sigma_e Z_e dX_2]
+						+ \frac{1}{Z_e^3}\sigma_e^2 Z_e^2 dt	\\
+					&= [-(\mu_e + r_e) + \sigma_e^2]\frac{1}{Z_e}dt
+						- \sigma_e \frac{1}{Z_e}dX_2	\\
+				\Rightarrow dY
+					&= \frac{Z_g}{Z_e}([-(\mu_e + r_e) + \sigma_e^2]dt
+						- \sigma_e dX_2)	\\
+						&~~+ \frac{Z_g}{Z_e}[(\mu_g + r_g)dt + \sigma_g dX_1]	\\
+						&~~+ \frac{Z_g}{Z_e}([-(\mu_e + r_e) + \sigma_e^2]dt
+							- \sigma_e dX_2)
+							[(\mu_g + r_g)dt + \sigma_g dX_1]	\\
+					&= [(\mu_g + r_g) - (\mu_e + r_e) + \sigma_e^2 - \rho \sigma_e \sigma_g]Ydt
+						+ \sigma_X Y dX_3
+			\end{aligned}
+		\end{equation*}
 		\item	%% (e)
+		By fundamental theorem of finance, if market is complete, there exists
+		a martingale measure such that $Y$ is a martingale under the measure.
+		Therefore, under $\mathbf{Q}$, there is no drift term in $dY$ so that
+		$Y$ is a martingale.
 		\item	%% (f)
+		By Girsanov's theorem, if we choose $\til{X}_3(t)$ such that
+		$\til{X}_3(t) = X_3(t) + \int_0^t \frac{(\mu_g + r_g) - (\mu_e + r_e)
+			+ \sigma_e^2 - \rho \sigma_e \sigma_g}{\sigma_X} ds$, then
+		there exists a probability measure $\mathbf{Q}$ so that
+		$\til{X}_3$ is a brownian motion under $\mathbf{Q}$.
+		Plugging $dX_3 = d\til{X}_3 - \frac{(\mu_g + r_g) - (\mu_e + r_e)
+			+ \sigma_e^2 - \rho \sigma_e \sigma_g}{\sigma_X}dt$
+		into $dY$, it becomes to $dY = \sigma_X Y d\til{X}_3$, which is
+		a martingale.
 		\item	%% (g)
+		Under $\mathbf{Q}$, $\til{X}_3(t) = X_3(t) + \int_0^t \frac{(\mu_g + r_g) - (\mu_e + r_e)
+			+ \sigma_e^2 - \rho \sigma_e \sigma_g}{\sigma_X} ds$
+		is a brownian motion.
+		Plugging $dX_3 = d\til{X}_3 - \frac{(\mu_g + r_g) - (\mu_e + r_e)
+			+ \sigma_e^2 - \rho \sigma_e \sigma_g}{\sigma_X}dt$
+		into $dX$, dynamics of $X$ is derived as follows.
+		%% DYNAMICS OF X UNDER Q
+		\begin{equation*}
+			\begin{aligned}
+				dX	&= (\mu_g - \mu_e + \sigma_e^2 - \rho \sigma_e \sigma_g)Xdt
+					+ \sigma_X X dX_3	\\
+					&= (\mu_g - \mu_e + \sigma_e^2 - \rho \sigma_e \sigma_g)Xdt
+						+ \sigma_X X (d\til{X}_3 - \frac{(\mu_g + r_g) - (\mu_e + r_e)
+							+ \sigma_e^2 - \rho \sigma_e \sigma_g}{\sigma_X}dt)	\\
+					&= (r_e - r_g)Xdt + \sigma_X X d\til{X}_3
+			\end{aligned}
+		\end{equation*}
 		\item	%% (h)
+		Let $V(t)$ denote the option value at time $t$. Under $\mathbf{Q}$,
+		since $V / Z_e$ is a martingale, $V(t)$ can be represented as
+		$V(t) = Z_e(t) \E_t^Q \left[\frac{V(T)}{Z_e(T)} \right]$.
+		Since $Z_e = eB_e$, and $V(T) = 1000 \times \max[g_T - e_T, 0]$,
+		$V(t)$ can also be represented as follows.
+		\begin{equation*}
+			\begin{aligned}
+				V(t)	&= Z_e(t) \E_t^Q \left[\frac{V(T)}{Z_e(T)} \right]	\\
+						&= e_t B_e(t) \times 1000 \times
+							\max \left[ \frac{g_T - e_T}{e_T B_e(T)}, 0 \right]	\\
+						&= e_t e^{-r_e(T - t)} \times 1000 \times
+							\max[X(T) - 1, 0]
+			\end{aligned}
+		\end{equation*}
 		\item	%% (i)
+		By analogy to the Black-Scholes-Merton formula, $V(g, e, 0)$ is
+		represented as follows.
+		%% CALL OPTION VALUE
+		\begin{equation*}
+			\begin{aligned}
+				V(0)	&= e_0 e^{-r_eT} \times 1000 \times
+					[X_0 e^{(r_e - r_g)T}N(d_1) - N(d_2)]	\\
+						&= e_0 e^{-r_eT} \times 1000 \times
+					\left[ \left( \frac{g_0}{e_0} \right)
+					 e^{(r_e - r_g)T}N(d_1) - N(d_2) \right]	\\
+					 	&= 1000 e^{-r_eT} [g_0e^{(r_e - r_g)T}N(d_1) - e_0 N(d_2)]	\\
+				d_1	&= \frac{\log X_0 + (r_e - r_g + \frac{1}{2}\sigma_X^2)T}{\sigma_X \sqrt{T}}	\\
+					&= \frac{\log(g_0 / e_0) + (r_e - r_g + \frac{1}{2}\sigma_X^2)T}{\sigma_X \sqrt{T}}	\\
+				d_2 &= d_1 - \sigma_X \sqrt{T}	\\
+				\sigma_X^2 &= \sigma_g^2 - 2 \sigma_g \sigma_e + \sigma_e^2
+			\end{aligned}
+		\end{equation*}
 	\end{enumerate}
 \end{homeworkProblem}
 \end{document}
