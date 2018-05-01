@@ -129,7 +129,7 @@
 %----------------------------------------------------------------------------------------
 
 \newcommand{\hmwkTitle}{Problem Set\ \#6} % Assignment title
-\newcommand{\hmwkDueDate}{Wednesday,\ April\ 25,\ 2018} % Due date
+\newcommand{\hmwkDueDate}{Wednesday,\ May\ 2,\ 2018} % Due date
 \newcommand{\hmwkClass}{FIN\ 514} % Course/class
 \newcommand{\hmwkClassTime}{9:30am} % Class/lecture time
 \newcommand{\hmwkAuthorName}{Wanbae Park} % Your name
@@ -310,20 +310,48 @@
 			\end{aligned}
 		\end{equation*}
 		\item	%% (c)
-		Under the martingale measure with respect to $S(t)$ as a numeraire,
-		$V(t) / S(t)$ is also a martingale. Therefore, by definition of
-		martingale, European call option value $V(t)$ is derived as follows.
+		Let $\eta (t) = \E_t^Q[V(T) / S(T)]$. Since conditional expectation is
+		always a martingale under corresponding probability measure, $\eta(t)$
+		is a $\mathbf{Q}$ - martingale. Then by martingale representation
+		theorem, there exists a unique process $\phi(t)$ such that
+		$d\eta(t) = \phi(t) d(B(t) / S(t))$. Let us construct a portfolio
+		$\Pi(t)$ such that $\Pi(t) = \psi(t)S(t) + \phi(t)B(t)$, where
+		$\psi(t) = \eta(t) - \phi(t)B(t) / S(t)$. Then $\Pi(t) = \eta(t)S(t)$
+		for all $t$. If $\Pi(t)$ is self-financing, then since there is no
+		intermediate cash flow, and $\Pi(T) = \eta(T)S(T) = V(T)$,
+		by no arbitrage principle, value of the option at $t$ must be equal to
+		$\Pi(t)$. Therefore, it needs to figure out whether $\Pi(t)$ is
+		self-financing or not. In order to check it, dynamics of $\Pi(t)$ is
+		derived as follows.
+		\begin{equation*}
+			\begin{aligned}
+				d\Pi(t)	&= S(t)d\eta(t) + \eta(t)dS(t) + dS(t)d\eta(t)	\\
+						&= \phi(t)S(t) d\left(\frac{B(t)}{S(t)} \right)
+							+ \left(\psi(t) + \phi(t) \frac{B(t)}{S(t)} \right)dS(t)
+							+ \phi(t) dS(t) d \left( \frac{B(t)}{S(t)} \right)	\\
+						&= \phi(t) \left( S(t) d\left( \frac{B(t)}{S(t)} \right)
+						  	+ \frac{B(t)}{S(t)}dS(t)
+							+ dS(t) d\left( \frac{B(t)}{S(t)} \right)\right)
+							+ \psi(t) dS(t)	\\
+						&= \phi(t)d\left( S(t) \frac{B(t)}{S(t)}\right)
+							+ \psi(t)dS(t)	\\
+						&= \psi(t)dS(t) + \phi(t)dB(t)
+			\end{aligned}
+		\end{equation*}
+		From the equation above, we can find out that $\Pi(t)$ is a
+		self-financing strategy. Therefore, option value $V(t)$ must equal to
+		$\Pi(t) = \eta(t)S(t) = S(t)\E_t^Q[V(T)/S(T)]$, which is represented
+		as follows.
 		%% EUROPEAN CALL OPTION VALUE UNDER Q
 		\begin{equation*}
 			\begin{aligned}
-				\frac{V(t)}{S(t)} &= \E_t^Q \left[ \frac{V(T)}{S(T)} \right]	\\
-				\Rightarrow V(t) &= S(t) \E_t^Q \left[ \frac{V(T)}{S(T)} \right]	\\
+				V(t) &= S(t) \E_t^Q \left[ \frac{V(T)}{S(T)} \right]	\\
 					&= S(t) \E_t^Q \left[ \frac{\max(S(T) - K, 0)}{S(T)} \right]	\\
 					&= S(t) \E_t^Q \left[ \max \left(1 - \frac{K}{S(T)}, 0 \right) \right]
 			\end{aligned}
 		\end{equation*}
 		Where $K$ is strike price of the option, and $Q$ is a probability
-		measure in which $V(t)/S(t)$ is a martingale.
+		measure in which $B(t)/S(t)$ is a martingale.
 		\item	%% (d)
 		In order to evaluate call option value, we need to derive the solution
 		of SDE $dS(t) = (r + \sigma^2)S(t)dt + \sigma S(t) d\til{X}(t)$ first.
@@ -512,9 +540,36 @@
 			\end{aligned}
 		\end{equation*}
 		\item	%% (h)
-		Let $V(t)$ denote the option value at time $t$. Under $\mathbf{Q}$,
-		since $V / Z_e$ is a martingale, $V(t)$ can be represented as
-		$V(t) = Z_e(t) \E_t^Q \left[\frac{V(T)}{Z_e(T)} \right]$.
+		Let $\eta(t) = \E_t^Q[V(T)/Z_e(T)]$. Then $\eta(t)$ is a $\mathbf{Q}$ -
+		martingale. Since $Y = Z_g / Z_e$ is also a martingale under $\mathbf{Q}$,
+		by martingale representation theorem, there exists a unique process
+		$\phi(t)$ such that $d\eta(t) = \phi(t)dY(t)$. Then, let us construct
+		a portfolio $\Pi(t)$ such that $\Pi(t) = \phi(t)Z_g(t) + \psi(t)Z_e(t)$,
+		where $\psi(t) = \eta(t) - \phi(t) Z_g(t) / Z_e(t)$ so that $\Pi(t) =
+		\eta(t)Z_e(t)$ for all $t$. Since $\Pi(T) = \eta(T)Z_e(T) = V(T)$,
+		if the strategy is self-financing, by no arbitrage principle, $V(t)$
+		must be equal to $\eta(t)Z_e(t) = Z_e(t) \E_t^Q[V(T)/Z_e(T)]$. Therefore,
+		let us figure out whether the strategy is self-fiancing or not by deriving
+		dynamics of $\Pi(t)$ as follows.
+		\begin{equation*}
+			\begin{aligned}
+				d\Pi(t)	&= d(\eta(t)Z_e(t))	\\
+						&= \eta(t)dZ_e(t) + Z_e(t)d\eta(t) + dZ_e(t)d\eta(t)	\\
+						&= \left( \psi(t) + \phi(t)\frac{Z_g(t)}{Z_e(t)} \right)dZ_e(t)
+							+ Z_e(t) \left( \phi(t) d\left( \frac{Z_g(t)}{Z_e(t)} \right) \right)
+							+ \phi(t) d\left( \frac{Z_g(t)}{Z_e(t)} \right)dZ_e(t)	\\
+						&= \phi(t) \left[ \frac{Z_g(t)}{Z_e(t)}dZ_e(t)
+						 	+ Z_e(t)d\left( \frac{Z_g(t)}{Z_e(t)} \right)
+							+ d\left( \frac{Z_g(t)}{Z_e(t)} \right) dZ_e(t) \right]
+							+ \psi(t)dZ_e(t)	\\
+						&= \phi(t) d\left( Z_e(t) \frac{Z_g(t)}{Z_e(t)} \right)
+							+ \psi(t)dZ_e(t)	\\
+						&= \phi(t)dZ_g(t) + \psi(t)dZ_e(t)
+			\end{aligned}
+		\end{equation*}
+		From the equation above, it can be found that $\Pi(t)$ is a self-financing
+		portfolio. Therefore, as mentioned above, value of the option $V(t)$
+		must be equal to $\Pi(t)$, which is $Z_e(t) \E_t^Q[V(T)/Z_e(T)]$.
 		Since $Z_e = eB_e$, and $V(T) = 1000 \times \max[g_T - e_T, 0]$,
 		$V(t)$ can also be represented as follows.
 		\begin{equation*}
